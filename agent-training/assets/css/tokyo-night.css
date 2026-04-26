@@ -1,0 +1,30 @@
+/* Tokyo Night Dark Theme for CodeMirror 5 */
+.cm-s-tokyo-night.CodeMirror { background: #1a1b26; color: #a9b1d6; }
+.cm-s-tokyo-night div.CodeMirror-selected { background: #515c7e !important; }
+.cm-s-tokyo-night .CodeMirror-line::selection, .cm-s-tokyo-night .CodeMirror-line > span::selection, .cm-s-tokyo-night .CodeMirror-line > span > span::selection { background: rgba(81, 92, 126, 0.99); }
+.cm-s-tokyo-night .CodeMirror-line::-moz-selection, .cm-s-tokyo-night .CodeMirror-line > span::-moz-selection, .cm-s-tokyo-night .CodeMirror-line > span > span::-moz-selection { background: rgba(81, 92, 126, 0.99); }
+.cm-s-tokyo-night .CodeMirror-gutters { background: #1a1b26; border-right: 1px solid #1a1b26; }
+.cm-s-tokyo-night .CodeMirror-guttermarker { color: #f7768e; }
+.cm-s-tokyo-night .CodeMirror-guttermarker-sub { color: #3b4261; }
+.cm-s-tokyo-night .CodeMirror-linenumber { color: #3b4261; }
+.cm-s-tokyo-night .CodeMirror-cursor { border-left: 2px solid #c0caf5 !important; }
+.cm-s-tokyo-night .cm-keyword { color: #bb9af7; }
+.cm-s-tokyo-night .cm-operator { color: #89ddff; }
+.cm-s-tokyo-night .cm-variable-2 { color: #c0caf5; }
+.cm-s-tokyo-night .cm-variable-3 { color: #f7768e; }
+.cm-s-tokyo-night .cm-builtin { color: #ff9e64; }
+.cm-s-tokyo-night .cm-atom { color: #ff9e64; }
+.cm-s-tokyo-night .cm-number { color: #ff9e64; }
+.cm-s-tokyo-night .cm-def { color: #7aa2f7; }
+.cm-s-tokyo-night .cm-string { color: #9ece6a; }
+.cm-s-tokyo-night .cm-string-2 { color: #f7768e; }
+.cm-s-tokyo-night .cm-comment { color: #565f89; font-style: italic; }
+.cm-s-tokyo-night .cm-variable { color: #c0caf5; }
+.cm-s-tokyo-night .cm-tag { color: #f7768e; }
+.cm-s-tokyo-night .cm-meta { color: #7dcfff; }
+.cm-s-tokyo-night .cm-attribute { color: #bb9af7; }
+.cm-s-tokyo-night .cm-property { color: #7dcfff; }
+.cm-s-tokyo-night .cm-qualifier { color: #7dcfff; }
+.cm-s-tokyo-night .cm-type { color: #0db9d7; }
+.cm-s-tokyo-night .cm-error { color: #ff0000; }
+.cm-s-tokyo-night .CodeMirror-matchingbracket { text-decoration: underline; color: #a9b1d6 !important; }
