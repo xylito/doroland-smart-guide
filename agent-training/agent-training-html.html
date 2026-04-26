@@ -316,6 +316,55 @@
             line-height: 1.5;
         }
 
+        .code-wrapper {
+            position: relative;
+            margin-top: 5px;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 4px;
+            padding: 4px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            box-shadow: 0 2px 5px var(--panel-shadow);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        .code-wrapper:hover .copy-btn {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+            background: var(--bg-dark);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .mission-card code {
+            display: block;
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-x: auto;
+            padding: 10px;
+            line-height: 1.4;
+        }
+
         code {
             background: var(--code-bg);
             color: var(--primary);
@@ -571,13 +620,11 @@
                     <h3>주요 시설 목록 만들기</h3>
                     <p>테마파크의 3대 어트랙션을 점이 찍힌 목록으로 정리하라.</p>
                     <span class="tag-hint">힌트: &lt;ul&gt; 과 &lt;li&gt; 태그 사용</span><br>
-                    <code>
-&lt;ul&gt;<br>
-&nbsp;&nbsp;&lt;li&gt;스마트 사파리&lt;/li&gt;<br>
-&nbsp;&nbsp;&lt;li&gt;기상 조절 돔&lt;/li&gt;<br>
-&nbsp;&nbsp;&lt;li&gt;대기 오염 정화탑&lt;/li&gt;<br>
-&lt;/ul&gt;
-                    </code>
+                    <code>&lt;ul&gt;
+  &lt;li&gt;스마트 사파리&lt;/li&gt;
+  &lt;li&gt;기상 조절 돔&lt;/li&gt;
+  &lt;li&gt;대기 오염 정화탑&lt;/li&gt;
+&lt;/ul&gt;</code>
                 </div>
 
                 <div class="mission-card">
@@ -625,7 +672,9 @@
                     <h3>소개 영역 박스 만들기 (섹션)</h3>
                     <p>지금까지 만든 내용들을 예쁘게 하나로 묶을 수 있는 투명한 상자(구역)를 만들어라.</p>
                     <span class="tag-hint">힌트: &lt;div&gt; 또는 &lt;section&gt; 태그 사용</span><br>
-                    <code>&lt;div class="intro-box"&gt;<br>&nbsp;&nbsp;여기에 여러 내용들을 담을 수 있다!<br>&lt;/div&gt;</code>
+                    <code>&lt;div class="intro-box"&gt;
+  여기에 여러 내용들을 담을 수 있다!
+&lt;/div&gt;</code>
                 </div>
             </div>
         </div>
@@ -790,6 +839,31 @@
 
         // 초기 화면 렌더링
         updatePreview();
+
+        // Copy Button Logic
+        document.querySelectorAll('.mission-card code').forEach(codeBlock => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-wrapper';
+            
+            codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+            
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.innerHTML = '📋';
+            copyBtn.title = '코드 복사';
+            
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+                    copyBtn.innerHTML = '✅';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '📋';
+                    }, 2000);
+                });
+            });
+            
+            wrapper.appendChild(copyBtn);
+        });
     </script>
 
     <footer class="ui-footer">

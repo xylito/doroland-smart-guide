@@ -340,6 +340,55 @@
             line-height: 1.5;
         }
 
+        .code-wrapper {
+            position: relative;
+            margin-top: 5px;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 4px;
+            padding: 4px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            box-shadow: 0 2px 5px var(--panel-shadow);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        .code-wrapper:hover .copy-btn {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+            background: var(--bg-dark);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .mission-card code {
+            display: block;
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-x: auto;
+            padding: 10px;
+            line-height: 1.4;
+        }
+
         code {
             background: var(--code-bg);
             color: var(--primary);
@@ -602,7 +651,9 @@
                     <h3>알림 마법 주문(함수) 만들기</h3>
                     <p>화면에 환영 인사 알림창을 띄우는 'showMagic' 이라는 마법 주문을 만들어볼까?</p>
                     <span class="tag-hint">힌트: function과 alert 사용</span><br>
-                    <code>function showMagic() {<br>&nbsp;&nbsp;alert("환영합니다!");<br>}</code>
+                    <code>function showMagic() {
+  alert("환영합니다!");
+}</code>
                 </div>
 
                 <div class="mission-card">
@@ -610,14 +661,15 @@
                     <h3>버튼에 클릭 마법 걸기</h3>
                     <p>마법 버튼을 찾아내서, 클릭할 때 방금 만든 'showMagic' 주문이 발동되게 해보자!</p>
                     <span class="tag-hint">힌트: onclick 사용</span><br>
-                    <code>const btn = document.getElementById('magic-btn');<br>btn.onclick = showMagic;</code>
+                    <code>const btn = document.getElementById('magic-btn');
+btn.onclick = showMagic;</code>
                 </div>
 
                 <div class="mission-card">
                     <div class="mission-step">미션 6 (보너스)</div>
                     <h3>외부 세계와 통신하기 (API 예습)</h3>
                     <span class="tag-hint">힌트: fetch, if, src 속성 사용</span><br>
-                    <code style="display:block; white-space:pre-wrap; word-break:break-word; overflow-x:auto; margin-top:5px; padding:10px; line-height:1.4;">fetch('https://dog.ceo/api/breeds/image/random')
+                    <code>fetch('https://dog.ceo/api/breeds/image/random')
   .then(res => res.json())
   .then(data => {
     if (data.status === "success") {
@@ -782,6 +834,31 @@
 
         window.cmEditor.on('change', updatePreview);
         updatePreview();
+
+        // Copy Button Logic
+        document.querySelectorAll('.mission-card code').forEach(codeBlock => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-wrapper';
+            
+            codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+            
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.innerHTML = '📋';
+            copyBtn.title = '코드 복사';
+            
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+                    copyBtn.innerHTML = '✅';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '📋';
+                    }, 2000);
+                });
+            });
+            
+            wrapper.appendChild(copyBtn);
+        });
     </script>
 
     <footer class="ui-footer">

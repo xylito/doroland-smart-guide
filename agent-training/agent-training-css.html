@@ -379,6 +379,55 @@
             line-height: 1.5;
         }
 
+        .code-wrapper {
+            position: relative;
+            margin-top: 5px;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 4px;
+            padding: 4px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            box-shadow: 0 2px 5px var(--panel-shadow);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        .code-wrapper:hover .copy-btn {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+            background: var(--bg-dark);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .mission-card code {
+            display: block;
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-x: auto;
+            padding: 10px;
+            line-height: 1.4;
+        }
+
         code {
             background: var(--code-bg);
             color: var(--primary);
@@ -663,7 +712,14 @@
                     <h3>버튼 예쁘게 꾸미기</h3>
                     <p>제출 버튼에 색상과 안쪽 여백(padding)을 줘서 누르고 싶게 만들어요!</p>
                     <span class="tag-hint">힌트: button 태그 사용</span><br>
-                    <code>button { background-color: #38bdf8; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }</code>
+                    <code>button {
+  background-color: #38bdf8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}</code>
                 </div>
 
                 <div class="mission-card">
@@ -679,7 +735,12 @@
                     <h3>섹션 꾸미기 (박스 마법)</h3>
                     <p>내용이 들어있는 상자(content-box)에 예쁜 색상과 테두리를 줘서 특별한 구역으로 만들어볼까요?</p>
                     <span class="tag-hint">힌트: .content-box 클래스 선택자 사용</span><br>
-                    <code>.content-box { background-color: #e0f2fe; padding: 20px; border-radius: 10px; border: 2px dashed #38bdf8; }</code>
+                    <code>.content-box {
+  background-color: #e0f2fe;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #38bdf8;
+}</code>
                 </div>
             </div>
         </div>
@@ -848,6 +909,31 @@
         // 입력할 때마다 실시간으로 결과 화면 업데이트
         window.cmEditor.on('change', updatePreview);
         updatePreview();
+
+        // Copy Button Logic
+        document.querySelectorAll('.mission-card code').forEach(codeBlock => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-wrapper';
+            
+            codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+            
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.innerHTML = '📋';
+            copyBtn.title = '코드 복사';
+            
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+                    copyBtn.innerHTML = '✅';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '📋';
+                    }, 2000);
+                });
+            });
+            
+            wrapper.appendChild(copyBtn);
+        });
 
         // Color Picker Logic
         const colorPicker = document.getElementById('color-picker');
