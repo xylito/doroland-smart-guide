@@ -435,6 +435,25 @@
         };
 
         window.onload = function() {
+            // [실시간 발표시각 자동 계산] 현재 시각의 16분 전 기준 30분 단위 시각 세팅
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - 16); // 데이터 생성 지연을 고려하여 16분 전 시각 사용
+            
+            const yyyy = now.getFullYear();
+            const mm = String(now.getMonth() + 1).padStart(2, '0');
+            const dd = String(now.getDate()).padStart(2, '0');
+            const hh = String(now.getHours()).padStart(2, '0');
+            const mi = now.getMinutes() < 30 ? '00' : '30'; // 30분 단위로 올림/내림 처리
+            
+            const dateStr = `${yyyy}${mm}${dd}`;
+            const timeStr = `${hh}${mi}`;
+
+            // Spec의 파라미터 예시값(example)을 실시간 값으로 동적 수정
+            spec.paths["/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst"].get.parameters.forEach(p => {
+                if (p.name === 'base_date') p.schema.example = dateStr;
+                if (p.name === 'base_time') p.schema.example = timeStr;
+            });
+
             window.ui = SwaggerUIBundle({
                 spec: spec,
                 dom_id: '#swagger-ui',
