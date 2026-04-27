@@ -213,6 +213,36 @@
             align-items: center;
         }
 
+        .portal-btn {
+            background: rgba(248, 250, 252, 0.9);
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            color: #334155;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            user-select: none;
+            text-decoration: none;
+            font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        }
+        .portal-btn:hover {
+            background: rgba(248, 250, 252, 1);
+            transform: scale(1.05);
+        }
+        [data-theme="light"] .portal-btn {
+            background: rgba(15, 23, 42, 0.85);
+            border-color: #1e293b;
+            color: #f8fafc;
+        }
+        [data-theme="light"] .portal-btn:hover {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
         /* Theme Toggle */
         .theme-toggle {
             background: rgba(248, 250, 252, 0.9);
@@ -264,6 +294,7 @@
 <body>
 
     <div class="floating-controls">
+        <a href="https://www.data.go.kr" target="_blank" class="portal-btn">🌐 공공데이터 포털</a>
         <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
             <span class="toggle-icon">☀️</span>
             <span class="toggle-label">주간 모드</span>
