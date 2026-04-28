@@ -198,22 +198,59 @@
             }
 
             // Safari workaround: navigator.clipboard.write must be called immediately in the click handler.
-            // We pass a Promise that resolves to a Blob to the ClipboardItem constructor.
             const capturePromise = (async () => {
-                await new Promise(resolve => setTimeout(resolve, 150)); // UI update buffer
-                const canvas = await html2canvas(target, {
+                await new Promise(resolve => setTimeout(resolve, 200)); // UI update buffer
+                
+                const rect = target.getBoundingClientRect();
+                const baseOptions = {
                     backgroundColor: null,
                     useCORS: true,
-                    scale: 3,
+                    allowTaint: false,
+                    scale: window.devicePixelRatio > 1 ? 2 : 3,
                     logging: false,
-                    ignoreElements: (el) => el.id?.startsWith('screenshot')
-                });
-                return new Promise((resolve, reject) => {
-                    canvas.toBlob((blob) => {
-                        if (blob) resolve(blob);
-                        else reject(new Error('Canvas to Blob failed'));
-                    }, 'image/png');
-                });
+                    width: rect.width,
+                    height: rect.height,
+                    scrollX: -window.scrollX,
+                    scrollY: -window.scrollY,
+                    ignoreElements: (el) => el.id?.startsWith('screenshot'),
+                    onclone: (clonedDoc) => {
+                        const el = clonedDoc.getElementById(target.id);
+                        if (el) el.style.transform = 'none';
+                    }
+                };
+
+                try {
+                    const canvas = await html2canvas(target, baseOptions);
+                    return await new Promise((resolve, reject) => {
+                        try {
+                            canvas.toBlob((blob) => {
+                                if (blob) resolve(blob);
+                                else reject(new Error('Canvas to Blob failed'));
+                            }, 'image/png');
+                        } catch (e) { reject(e); }
+                    });
+                } catch (err) {
+                    // FALLBACK: 보안 오류 발생 시 이미지를 제외하고 재시도
+                    console.warn('CORS/Security error detected. Retrying without images...');
+                    const fallbackOptions = {
+                        ...baseOptions,
+                        ignoreElements: (el) => el.id?.startsWith('screenshot') || el.tagName === 'IMG'
+                    };
+                    
+                    try {
+                        const canvas = await html2canvas(target, fallbackOptions);
+                        return await new Promise((resolve, reject) => {
+                            canvas.toBlob((blob) => {
+                                if (blob) {
+                                    showGlobalToast('⚠️ 보안 정책으로 인해 외부 이미지를 제외하고 캡처되었습니다.');
+                                    resolve(blob);
+                                } else reject(new Error('Fallback capture failed'));
+                            }, 'image/png');
+                        });
+                    } catch (finalErr) {
+                        throw new Error('보안 정책 및 환경 문제로 캡처가 불가능합니다. (로컬 서버 권장)');
+                    }
+                }
             })();
 
             const item = new ClipboardItem({ 'image/png': capturePromise });
