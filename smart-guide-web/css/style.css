@@ -38,6 +38,8 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     position: relative; /* 배경 이미지를 위해 */
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
 /* 제목 폰트 예쁘게 바꾸기 */
@@ -91,6 +93,9 @@ h1, h2, h3 {
 
 /* 헤더 영역 */
 header {
+    position: sticky;
+    top: 20px;
+    z-index: 90;
     text-align: center;
     margin-bottom: 2rem;
     padding: 2rem;
@@ -265,3 +270,26 @@ header h1 {
 ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
 ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+
+/* 모바일 친화적 반응형 디자인 (글자 분리 및 겹침 해결) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2rem;
+        word-break: keep-all; /* 단어 단위로 줄바꿈 (글자 쪼개짐 방지) */
+    }
+    .data-value {
+        font-size: 1.8rem;
+    }
+    .card-container {
+        flex-direction: column;
+    }
+    .primary-btn {
+        padding: 15px 25px;
+        font-size: 1.1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .action-btn-container {
+        padding: 0 1rem;
+    }
+}

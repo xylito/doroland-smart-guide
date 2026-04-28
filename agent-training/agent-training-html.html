@@ -19,6 +19,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>도로랜드 정보국 특수작전팀 - HTML 훈련</title>
     <link rel="icon" href="../favicon.png" type="image/png">
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('doroland-theme');
+            var savedOsTheme = localStorage.getItem('doroland-os-theme');
+            var currentOsTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            
+            var theme;
+            if (savedOsTheme && savedOsTheme !== currentOsTheme) {
+                // OS 설정이 변경되었다면 수동 설정 무시하고 OS를 따름
+                theme = currentOsTheme;
+                localStorage.setItem('doroland-theme', theme);
+            } else {
+                theme = savedTheme || currentOsTheme;
+            }
+            localStorage.setItem('doroland-os-theme', currentOsTheme);
+            document.documentElement.setAttribute('data-theme', theme);
+
+            // 사용중 시스템 테마가 바뀌면 실시간 반영
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                var newTheme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('doroland-theme', newTheme);
+                localStorage.setItem('doroland-os-theme', newTheme);
+                if (typeof updateToggleUI === 'function') updateToggleUI(newTheme);
+                if (window.cmEditor) {
+                    window.cmEditor.setOption("theme", newTheme === 'dark' ? 'tokyo-night' : 'default');
+                }
+            });
+        })();
+    </script>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
     <!-- CodeMirror -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
@@ -109,19 +139,18 @@
             🤖 <span>도로랜드</span> 정보국 특수작전팀
             <div class="status-badge">신입 요원 훈련 중</div>
         </div>
+        <div class="header-controls">
+            <a href="../index.html" class="portal-btn">🏠 훈련 포털</a>
+            <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
+                <span class="toggle-icon">☀️</span>
+                <span class="toggle-label">주간 모드</span>
+            </button>
+        </div>
     </header>
-
-    <div class="floating-controls">
-        <a href="../index.html" class="portal-btn">🏠 훈련 포털</a>
-        <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
-            <span class="toggle-icon">☀️</span>
-            <span class="toggle-label">주간 모드</span>
-        </button>
-    </div>
 
     <div class="main-container">
         <!-- Scenario Column -->
-        <div class="panel scenario-col">
+        <div class="panel scenario-col" id="scenario">
             <div class="panel-header">
                 📜 임무 지령서
             </div>
@@ -246,7 +275,7 @@
         </div>
 
         <!-- Editor Column -->
-        <div class="panel editor-col">
+        <div class="panel editor-col" id="editor">
             <div class="panel-header">
                 💻 코드 편집기 (HTML)
             </div>
@@ -256,7 +285,7 @@
         </div>
 
         <!-- Preview Column -->
-        <div class="panel preview-col">
+        <div class="panel preview-col" id="preview">
             <div class="panel-header">
                 🌐 실시간 결과 화면
             </div>
@@ -264,6 +293,13 @@
                 <iframe id="preview-frame"></iframe>
             </div>
         </div>
+    </div>
+
+    <!-- 모바일용 빠른 이동 네비게이션 -->
+    <div class="mobile-nav">
+        <a href="#scenario" class="nav-btn">📜 지령</a>
+        <a href="#editor" class="nav-btn">💻 코드 편집기</a>
+        <a href="#preview" class="nav-btn">🌐 결과</a>
     </div>
 
     <script>
