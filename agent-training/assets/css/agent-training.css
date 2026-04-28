@@ -506,7 +506,7 @@ body {
         @media (min-width: 1025px) and (max-width: 1536px) {
             .main-container {
                 display: grid;
-                grid-template-columns: 400px 1fr;
+                grid-template-columns: 1fr 1fr;
                 grid-template-rows: 1fr 1fr;
                 gap: 20px;
             }
