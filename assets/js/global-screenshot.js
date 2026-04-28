@@ -227,12 +227,17 @@
                 scale: window.devicePixelRatio || 2,
                 logging: false,
                 ignoreElements: el => el.id?.startsWith('screenshot') || el.tagName === 'IFRAME',
-                onclone: clonedDoc => {
-                    // Reveal hover-only UI elements so they appear in the screenshot
-                    clonedDoc.querySelectorAll('.copy-btn').forEach(btn => {
-                        btn.style.opacity = '1';
-                        btn.style.visibility = 'visible';
-                    });
+                onclone: (clonedDoc, clonedTarget) => {
+                    // Only reveal the copy-btn inside the captured element's code-wrapper,
+                    // not all copy buttons globally (they should stay hidden when not hovered).
+                    const wrapper = clonedTarget.closest?.('.code-wrapper') || clonedTarget.querySelector?.('.code-wrapper');
+                    if (wrapper) {
+                        const btn = wrapper.querySelector('.copy-btn');
+                        if (btn) {
+                            btn.style.opacity = '1';
+                            btn.style.visibility = 'visible';
+                        }
+                    }
                 }
             });
 
