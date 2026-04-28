@@ -5,13 +5,17 @@ import re
 # [1] 라이선스 설정 정보
 # ==========================================
 INFO = {
-    "PROJECT": "도로랜드 스마트 안내 시스템 (Doroland Smart Guide)",
-    "CREATOR": "XYLO (@xylito) & DORO Inc.",
-    "VERSION": "1.1.2",
-    "DATE": "2026.04.28.",
+    "PROJECT_FINAL": "도로랜드 스마트 안내 시스템",
+    "PROJECT_TRAINING": "도로랜드 정보국 훈련소",
+    "CREATOR": "XYLO",
+    "HANDLE": "@xylito",
+    "POWERED_BY": "DORO Inc.",
+    "VERSION": "1.2.0",
+    "DATE": "2026.04.29.",
     "YEAR": "2026",
     "SOURCE": "https://github.com/xylito/doroland-smart-guide",
-    "LICENSE": "CC BY-SA 4.0 (상업적 이용 가능 / 동일 조건 변경 허락 / 저작자 표시)"
+    "LICENSE": "CC BY-SA 4.0 (상업적 이용 가능 / 동일 조건 변경 허락 / 저작자 표시)",
+    "GITHUB": "github.com/xylito"
 }
 
 # 확장자별 주석 스타일 정의
@@ -23,24 +27,34 @@ STYLES = {
 
 def get_content(is_final_mission=False):
     """파일 경로에 따라 동적으로 라이선스 본문을 생성합니다."""
-    creator = INFO['CREATOR']
-    if is_final_mission:
-        creator += " & You"
-        
+    creator = INFO['CREATOR'] + ' & You' if is_final_mission else INFO['CREATOR']
+    project = INFO['PROJECT_FINAL'] if is_final_mission else INFO['PROJECT_TRAINING']
     return f"""
   ============================================================================================================
   [ Credits & License ]
   
-  - Project:   {INFO['PROJECT']}
-  - Creator:   {creator}
-  - Version:   {INFO['VERSION']} ({INFO['DATE']})
-  - Source:    {INFO['SOURCE']}
-  - License:   {INFO['LICENSE']}
+  - Project:    {project}
+  - Creator:    {creator}
+  - Powered by: {INFO['POWERED_BY']}
+  - Version:    {INFO['VERSION']} ({INFO['DATE']})
+  - Source:     {INFO['SOURCE']}
+  - License:    {INFO['LICENSE']}
   
   이 저작물은 공공데이터를 활용한 웹 개발 교육용 실습 자료로 제작되었습니다.
   미래의 훌륭한 웹 마스터가 될 여러분을 응원합니다!
   ============================================================================================================
 """
+
+def get_html_footer(is_final_mission=False):
+    """HTML 파일의 하단 푸터(ui-footer)를 동적으로 생성합니다."""
+    creator = INFO['CREATOR'] + ' & You' if is_final_mission else INFO['CREATOR']
+    project = INFO['PROJECT_FINAL'] if is_final_mission else INFO['PROJECT_TRAINING']
+    license_short = INFO['LICENSE'].split(' (')[0].strip()
+    
+    return f"""    <footer class="ui-footer">
+        &copy; {INFO['YEAR']} {creator} | {project} {INFO['VERSION']} | Powered by {INFO['POWERED_BY']} | License: {license_short} | 
+        <a href="https://{INFO['GITHUB']}" target="_blank" rel="noopener noreferrer">{INFO['GITHUB']}</a>
+    </footer>"""
 
 def update_license_file():
     """루트의 LICENSE 파일 내용을 업데이트합니다."""
@@ -56,7 +70,7 @@ def update_license_file():
         content = re.sub(r"Version \d+\.\d+\.\d+ \(.*?\)", f"Version {INFO['VERSION']} ({INFO['DATE']})", content)
         
         # 카피라이트 정보 업데이트 (Copyright (c) yyyy ...)
-        content = re.sub(r"Copyright \(c\) \d{4} .*? & .*?(\n|$)", f"Copyright (c) {INFO['YEAR']} {INFO['CREATOR']}\n", content)
+        content = re.sub(r"Copyright \(c\) \d{4} .*? & .*?(\n|$)", f"Copyright (c) {INFO['YEAR']} {INFO['CREATOR']} ({INFO['HANDLE']})\n", content)
         
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(content)
@@ -104,6 +118,12 @@ def apply_license():
                     else:
                         # 없다면 맨 위에 추가
                         new_content = full_header + file_content
+                    
+                    # HTML 파일인 경우 푸터도 업데이트
+                    if ext == '.html':
+                        footer_pattern = re.compile(r'^\s*<footer class="ui-footer">.*?</footer>', re.DOTALL | re.MULTILINE)
+                        if footer_pattern.search(new_content):
+                            new_content = footer_pattern.sub(get_html_footer(is_final_mission), new_content)
                     
                     # 파일 쓰기
                     with open(filepath, 'w', encoding='utf-8') as f:
