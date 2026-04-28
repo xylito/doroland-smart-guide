@@ -231,6 +231,12 @@
                     onclone: (clonedDoc) => {
                         sanitizeImages(clonedDoc);
                         // ⚠️ Do NOT touch letter-spacing - it breaks Korean syllable rendering
+
+                        // Force-show hover-only buttons (e.g. copy-btn) so they appear in screenshots
+                        clonedDoc.querySelectorAll('.copy-btn').forEach(btn => {
+                            btn.style.opacity = '1';
+                            btn.style.visibility = 'visible';
+                        });
                     }
                 };
 
