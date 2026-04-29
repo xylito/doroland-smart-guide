@@ -370,6 +370,24 @@ document.addEventListener('DOMContentLoaded', () => {
         wrapper.appendChild(copyBtn);
     });
 
+    // Dictionary Content Loading Logic
+    const dictBox = document.querySelector('.dictionary-box');
+    if (dictBox) {
+        const dictFile = dictBox.getAttribute('data-dict-file');
+        const dictContent = document.getElementById('dictionary-content');
+        if (dictFile && dictContent) {
+            fetch(`./assets/data/${dictFile}.html`)
+                .then(response => response.text())
+                .then(html => {
+                    dictContent.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error loading dictionary:', error);
+                    dictContent.innerHTML = '<p>백과사전 내용을 불러오는 데 실패했습니다.</p>';
+                });
+        }
+    }
+
     // Color Picker Logic (CSS 요원용)
     const colorPicker = document.getElementById('color-picker');
     const hexValue = document.getElementById('hex-value');
