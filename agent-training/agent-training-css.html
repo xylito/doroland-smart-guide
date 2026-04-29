@@ -376,6 +376,42 @@
         }
     </style>`;
     </script>
+    <script>
+        // Color Picker Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const colorPicker = document.getElementById('color-picker');
+            const hexValue = document.getElementById('hex-value');
+
+            if (colorPicker && hexValue) {
+                const updateColor = (color) => {
+                    hexValue.textContent = color;
+                    hexValue.style.color = color;
+                };
+
+                colorPicker.addEventListener('input', (e) => {
+                    updateColor(e.target.value);
+                });
+
+                // 초기화
+                updateColor(colorPicker.value);
+
+                // 클릭하여 복사 기능 추가
+                hexValue.style.cursor = 'pointer';
+                hexValue.title = '클릭하여 HEX 코드 복사';
+                hexValue.addEventListener('click', () => {
+                    const color = hexValue.textContent;
+                    navigator.clipboard.writeText(color).then(() => {
+                        const originalText = hexValue.textContent;
+                        hexValue.textContent = '복사됨 ✅';
+                        hexValue.style.fontWeight = 'bold';
+                        setTimeout(() => {
+                            hexValue.textContent = originalText;
+                        }, 1000);
+                    });
+                });
+            }
+        });
+    </script>
     <script src="./assets/js/agent-training.js"></script>
     <script src="../assets/js/global-screenshot.js"></script>
     <footer class="ui-footer">

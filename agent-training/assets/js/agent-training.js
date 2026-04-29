@@ -387,16 +387,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         }
     }
-
-    // Color Picker Logic (CSS 요원용)
-    const colorPicker = document.getElementById('color-picker');
-    const hexValue = document.getElementById('hex-value');
-
-    if (colorPicker && hexValue) {
-        colorPicker.addEventListener('input', (e) => {
-            const newColor = e.target.value;
-            hexValue.textContent = newColor;
-            document.documentElement.style.setProperty('--primary', newColor);
-        });
-    }
 });
