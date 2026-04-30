@@ -268,7 +268,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 let color = getColorForType('html');
                 target.style.outline = '2px solid ' + color.border;
-                if (target.tagName !== 'BODY' && target.tagName !== 'HTML') {
+                
+                // CSS :hover 스타일이 적용된 요소(button 등)는 배경색 하이라이트 제외
+                const isInteractive = getComputedStyle(target).cursor === 'pointer' || ['BUTTON', 'A', 'INPUT', 'SELECT'].includes(target.tagName);
+                if (target.tagName !== 'BODY' && target.tagName !== 'HTML' && !isInteractive) {
                     target.style.backgroundColor = color.bg;
                 }
                 
@@ -317,7 +320,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.setAttribute('data-parent-old-bg', oldBg || '');
                 
                 el.style.outline = '3px solid ' + color.border;
-                if (el.tagName !== 'BODY' && el.tagName !== 'HTML') {
+                const isInteractive = getComputedStyle(el).cursor === 'pointer' || ['BUTTON', 'A', 'INPUT', 'SELECT'].includes(el.tagName);
+                if (el.tagName !== 'BODY' && el.tagName !== 'HTML' && !isInteractive) {
                     el.style.backgroundColor = color.bg;
                 }
                 
