@@ -62,7 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.cmEditor = CodeMirror.fromTextArea(editorElement, {
             mode: "htmlmixed",
             theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'tokyo-night' : 'default',
-         });
+            lineNumbers: true,
+            lineWrapping: true,
+            indentUnit: 4,
+            extraKeys: {"Ctrl-Space": "autocomplete"},
+            autoCloseTags: true
+        });
 
         // Codewhisper (스마트 자동완성) 초기화
         if (window.Codewhisper) {
@@ -388,18 +393,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .then(html => {
                     dictContent.innerHTML = html;
-                    // 로드된 내용에서 힌트 자동 추출 (Codewhisper 모듈 사용)
-                    if (window.Codewhisper) {
-                        window.Codewhisper.updateFromHTML(html);
-                    }
+                    if (window.Codewhisper) window.Codewhisper.updateFromHTML(html);
                 })
                 .catch(error => {
-                    console.error('Error loading dictionary:', error);
-                    let errorMsg = '백과사전 내용을 불러오는 데 실패했습니다.';
-                    if (window.location.protocol === 'file:') {
-                        errorMsg += '<br><small>(로컬 파일 보안 정책 때문일 수 있습니다. 라이브 서버를 사용해 주세요.)</small>';
+                    console.warn('External dictionary load failed, using dump fallback:', error);
+                    
+                    // 덤프 자료(Fallback) 사용 로직
+                    const type = dictFile.split('-')[1]; // html, css, js 추출
+                    const fallbackHtml = (window.CodewhisperDump && window.CodewhisperDump[type]) 
+                                        ? `<ul>${window.CodewhisperDump[type]}</ul>`
+                                        : null;
+
+                    if (fallbackHtml) {
+                        dictContent.innerHTML = fallbackHtml + '<p style="color: #6366f1; font-size: 0.8rem; margin-top: 10px;">ℹ️ 오프라인 모드: 덤프 자료가 로드되었습니다.</p>';
+                        if (window.Codewhisper) {
+                            window.Codewhisper.updateFromHTML(fallbackHtml);
+                            // CSS 요원 페이지라면 HTML 태그 덤프도 추가로 불러오기 (선택자 힌트용)
+                            if (type === 'css' && window.CodewhisperDump.html) {
+                                window.Codewhisper.updateFromHTML(`<ul>${window.CodewhisperDump.html}</ul>`);
+                            }
+                        }
+                    } else {
+                        let errorMsg = '백과사전 내용을 불러오는 데 실패했습니다.';
+                        if (window.location.protocol === 'file:') {
+                            errorMsg += '<br><small>(로컬 파일 보안 정책 때문입니다. 라이브 서버를 사용하시거나 덤프 파일을 확인해 주세요.)</small>';
+                        }
+                        dictContent.innerHTML = `<p style="color: #ef4444; font-size: 0.9rem;">${errorMsg}</p>`;
                     }
-                    dictContent.innerHTML = `<p style="color: #ef4444; font-size: 0.9rem;">${errorMsg}</p>`;
+                });
+        }
+
+        // CSS/JS 페이지라도 HTML 태그 힌트를 위해 HTML 사전을 추가로 로드
+        if (dictFile && dictFile !== 'dict-html') {
+            fetch(`./assets/data/dict-html.html`)
+                .then(r => r.ok ? r.text() : null)
+                .then(html => {
+                    if (html && window.Codewhisper) window.Codewhisper.updateFromHTML(html);
+                })
+                .catch(() => {
+                    if (window.Codewhisper && window.CodewhisperDump && window.CodewhisperDump.html) {
+                        window.Codewhisper.updateFromHTML(`<ul>${window.CodewhisperDump.html}</ul>`);
+                    }
+                });
+        }
+        // JS 페이지라면 CSS 사전도 로드 (.style. 힌트용)
+        if (dictFile === 'dict-js') {
+            fetch(`./assets/data/dict-css.html`)
+                .then(r => r.ok ? r.text() : null)
+                .then(html => {
+                    if (html && window.Codewhisper) window.Codewhisper.updateFromHTML(html);
+                })
+                .catch(() => {
+                    if (window.Codewhisper && window.CodewhisperDump && window.CodewhisperDump.css) {
+                        window.Codewhisper.updateFromHTML(`<ul>${window.CodewhisperDump.css}</ul>`);
+                    }
                 });
         }
     }
