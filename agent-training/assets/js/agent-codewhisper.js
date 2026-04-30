@@ -114,6 +114,84 @@ window.Codewhisper = {
             if (isCSSValue) return { list: [], from: cur, to: cur };
         }
 
+        // 2. JavaScript DOM 메소드 인자 추천 (getElementById, querySelector 등)
+        if (mode === "javascript") {
+            const domMatch = beforeCursorLine.match(/(getElementById|getElementsByClassName|getElementsByTagName|getElementsByName|querySelector|querySelectorAll)\(['"]([^'"]*)$/);
+            if (domMatch) {
+                const method = domMatch[1];
+                const curVal = domMatch[2].toLowerCase();
+                const fullContent = cmInstance.getValue();
+                let suggestions = [];
+
+                if (method === "getElementById" || method.includes("querySelector")) {
+                    (fullContent.match(/id=["']([^"']+)["']/g) || []).forEach(m => {
+                        const id = m.match(/["']([^"']+)["']/)[1];
+                        const prefix = method.includes("querySelector") ? "#" : "";
+                        if (id.toLowerCase().startsWith(curVal.replace(/^#/, ''))) {
+                            suggestions.push({ text: prefix + id + "')", displayText: `🆔 ${prefix}${id} (ID)` });
+                        }
+                    });
+                }
+                
+                if (method === "getElementsByClassName" || method.includes("querySelector")) {
+                    (fullContent.match(/class=["']([^"']+)["']/g) || []).forEach(m => {
+                        m.match(/["']([^"']+)["']/)[1].split(/\s+/).forEach(c => {
+                            const prefix = method.includes("querySelector") ? "." : "";
+                            if (c.toLowerCase().startsWith(curVal.replace(/^\./, ''))) {
+                                suggestions.push({ text: prefix + c + "')", displayText: `🎨 ${prefix}${c} (Class)` });
+                            }
+                        });
+                    });
+                }
+
+                if (method === "getElementsByTagName" || method.includes("querySelector")) {
+                    for (let tag in window.Codewhisper.descriptions) {
+                        if (!tag.includes('-') && !tag.startsWith('.') && tag.toLowerCase().startsWith(curVal)) {
+                            suggestions.push({ text: tag + "')", displayText: `🏷️ ${tag} (Tag)` });
+                        }
+                    }
+                }
+
+                if (method === "getElementsByName") {
+                    (fullContent.match(/name=["']([^"']+)["']/g) || []).forEach(m => {
+                        const name = m.match(/["']([^"']+)["']/)[1];
+                        if (name.toLowerCase().startsWith(curVal)) {
+                            suggestions.push({ text: name + "')", displayText: `📛 ${name} (Name)` });
+                        }
+                    });
+                }
+
+                if (suggestions.length > 0) return { list: suggestions, from: CodeMirror.Pos(cur.line, cur.ch - curVal.length), to: cur };
+            }
+
+            // 3. JavaScript 스타일 값 대입 추천 (style.color = " 등)
+            const jsStyleMatch = beforeCursorLine.match(/\.style\.([a-zA-Z0-9_$]+)\s*=\s*["']?([^"']*)$/);
+            if (jsStyleMatch) {
+                const prop = jsStyleMatch[1]; // color, backgroundColor 등
+                const curVal = jsStyleMatch[2].toLowerCase();
+                let suggestions = [];
+
+                if (prop === "color" || prop === "backgroundColor" || prop === "borderColor") {
+                    const colors = ["red", "blue", "green", "yellow", "black", "white", "gray", "purple", "orange", "pink", "skyblue", "gold", "silver", "transparent"];
+                    colors.forEach(c => {
+                        if (c.startsWith(curVal)) {
+                            suggestions.push({ text: "'" + c + "';", displayText: `🎨 '${c}'` });
+                        }
+                    });
+                } else if (prop === "display") {
+                    ["block", "none", "flex", "inline-block", "grid"].forEach(v => {
+                        if (v.startsWith(curVal)) suggestions.push({ text: "'" + v + "';", displayText: `📦 '${v}'` });
+                    });
+                } else if (prop === "cursor") {
+                    ["pointer", "default", "wait", "move", "not-allowed"].forEach(v => {
+                        if (v.startsWith(curVal)) suggestions.push({ text: "'" + v + "';", displayText: `🖱️ '${v}'` });
+                    });
+                }
+
+                if (suggestions.length > 0) return { list: suggestions, from: CodeMirror.Pos(cur.line, cur.ch - curVal.length), to: cur };
+            }
+        }
+
         // 2. 일반 모드
         while (start && /[\w-$]/.test(currentLine.charAt(start - 1))) --start;
         if (start > 0 && /[\<\.\#]/.test(currentLine.charAt(start - 1))) --start;
@@ -148,6 +226,43 @@ window.Codewhisper = {
             }
         } else if (mode === "javascript") {
             baseHints = CodeMirror.hint.javascript(cmInstance) || { list: [] };
+            const fullContent = cmInstance.getValue();
+            
+            // 1. 문서 내 변수/함수 선언 스캔 (const, let, var, function)
+            const varMatches = fullContent.match(/(const|let|var)\s+([a-zA-Z0-9_$]+)/g) || [];
+            const funcMatches = fullContent.match(/function\s+([a-zA-Z0-9_$]+)/g) || [];
+            const localVars = new Set();
+            varMatches.forEach(m => localVars.add(m.split(/\s+/).pop()));
+            funcMatches.forEach(m => localVars.add(m.split(/\s+/).pop()));
+            
+            localVars.forEach(v => {
+                if (v && !baseHints.list.some(h => (typeof h === 'string' ? h : h.text) === v)) {
+                    baseHints.list.push({ text: v, displayText: `📦 ${v} (지역 변수/함수)` });
+                }
+            });
+
+            // 2. 점(.) 입력 시 속성/메소드 추천
+            if (curWord.startsWith('.')) {
+                const domProps = ["innerText", "innerHTML", "style", "value", "onclick", "addEventListener", "classList", "getAttribute", "setAttribute", "appendChild", "remove", "parentElement", "children", "focus", "blur"];
+                domProps.forEach(p => {
+                    if (!baseHints.list.some(h => (typeof h === 'string' ? h : h.text) === p)) {
+                        baseHints.list.push({ text: "." + p, displayText: `🔹 ${p} (DOM 속성/메소드)` });
+                    }
+                });
+
+                // .style 뒤에는 CSS 속성 추천 (camelCase)
+                if (/\.style\.[a-zA-Z0-9_$]*$/.test(beforeCursorLine.trim())) {
+                    Object.keys(window.Codewhisper.descriptions).forEach(prop => {
+                        if (prop.includes('-') || ["color", "display", "width", "height", "margin", "padding", "border"].includes(prop)) {
+                            const camel = prop.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+                            // 이미 입력된 부분이 있으면 필터링을 위해 점 제외하고 추가
+                            if (!baseHints.list.some(h => (typeof h === 'string' ? h : h.text).includes(camel))) {
+                                baseHints.list.push({ text: camel, displayText: `🎨 ${camel} (Style)`, isStyle: true });
+                            }
+                        }
+                    });
+                }
+            }
         } else {
             baseHints = CodeMirror.hint.html(cmInstance) || { list: [] };
         }
@@ -177,6 +292,9 @@ window.Codewhisper = {
                     const lastA = Math.max(fullB.lastIndexOf(';'), fullB.lastIndexOf('{'), fullB.lastIndexOf('\n'));
                     const seg = fullB.slice(lastA + 1);
                     if (isInside && !repl.includes(':') && !repl.includes('{') && !seg.includes(':')) repl += ": ";
+                } else if (mode === "javascript") {
+                    const domMethods = ["getElementById", "getElementsByClassName", "getElementsByTagName", "getElementsByName", "querySelector", "querySelectorAll"];
+                    if (domMethods.some(m => repl.endsWith(m))) repl += "('";
                 } else if (mode === "html") {
                     const fullB = cm.getRange({line: 0, ch: 0}, data.from);
                     if (/<[a-zA-Z0-9-]+\s+[^>]*$/.test(fullB) && !repl.startsWith('<')) repl += '="';
@@ -186,7 +304,7 @@ window.Codewhisper = {
                 else cm.replaceRange(repl, data.from, data.to);
 
                 // 핵심: 즉시 연쇄 자동 완성 실행 (지연 시간 없이)
-                if (repl.endsWith(": ") || repl.endsWith('="')) {
+                if (repl.endsWith(": ") || repl.endsWith('="') || repl.endsWith("('")) {
                     cm.showHint({ completeSingle: false, hint: window.Codewhisper.getHints });
                 }
             };
@@ -211,7 +329,7 @@ window.Codewhisper = {
             const mode = cm.getModeAt(change.from).name;
             const line = cm.getLine(change.from.line).slice(0, change.from.ch + char.length);
             
-            const trigger = /[\w-$<.\#:]/.test(char) || (char === " " && /<[a-z0-9-]+\s+$/i.test(line)) || (char === " " && /:\s*$/i.test(line));
+            const trigger = /[\w-$<.\#:'"]/.test(char) || (char === " " && /<[a-z0-9-]+\s+$/i.test(line)) || (char === " " && /:\s*$/i.test(line));
             if (change.origin !== "+input" || !trigger) {
                 if (char === "}" && mode === "css") {
                     const cur = cm.getCursor();
