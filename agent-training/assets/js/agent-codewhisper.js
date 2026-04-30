@@ -16,40 +16,82 @@
 
 window.Codewhisper = {
     descriptions: {
-        'a': '링크를 만드는 태그', 'img': '이미지를 넣는 태그', 'input': '입력창을 만드는 태그',
-        'div': '구역을 나누는 상자', 'span': '문장 안의 작은 구역', 'p': '문단(텍스트) 태그',
-        'button': '클릭하는 버튼', 'ul': '순서 없는 목록', 'ol': '순서 있는 목록', 'li': '목록의 항목',
-        'h1': '가장 큰 제목', 'h2': '중간 제목', 'h3': '작은 제목', 'br': '줄바꿈 태그',
-        'strong': '글씨를 굵게', 'em': '글씨를 기울임', 'label': '입력창의 이름표',
-        'href': '연결할 주소(URL)', 'src': '이미지나 파일의 경로', 'alt': '이미지 설명(대체 텍스트)',
-        'class': '여러 번 쓸 수 있는 스타일 이름', 'id': '한 번만 쓰는 고유 이름', 'style': '직접 디자인 설정',
-        'target': '링크가 열릴 창 (_blank: 새창)', 'type': '입력창의 종류', 'placeholder': '미리 보여줄 글자',
-        'value': '기본값/입력된 값', 'width': '가로 길이', 'height': '세로 길이',
-        'color': '글자 색상', 'background-color': '배경 색상', 'font-size': '글자 크기',
-        'font-weight': '글자 두께', 'text-align': '텍스트 정렬', 'padding': '안쪽 여백',
-        'margin': '바깥 여백', 'border': '테두리', 'border-radius': '테두리 둥글게',
-        'display': '보여주는 방식 (flex, block 등)', 'flex': '유연한 박스 설정',
-        'justify-content': '가로 정렬 방식', 'align-items': '세로 정렬 방식',
-        'position': '위치 설정 방식', 'top': '위에서부터 거리', 'left': '왼쪽에서부터 거리',
-        'cursor': '마우스 커서 모양', 'opacity': '투명도', 'transition': '부드러운 변화'
+        // HTML Tags
+        'a': '🔗 링크를 만드는 태그', 'img': '🖼️ 이미지를 넣는 태그', 'input': '⌨️ 입력창을 만드는 태그',
+        'div': '📦 구역을 나누는 상자', 'span': '📏 문장 안의 작은 구역', 'p': '📝 문단(텍스트) 태그',
+        'button': '🖱️ 클릭하는 버튼', 'ul': '📜 순서 없는 목록', 'ol': '🔢 순서 있는 목록', 'li': '🔹 목록의 항목',
+        'h1': '🔝 가장 큰 제목', 'h2': '🥈 중간 제목', 'h3': '🥉 작은 제목', 'br': '⏎ 줄바꿈 태그',
+        'strong': '<b> 굵은 글씨', 'em': '<i> 기울임 글씨', 'label': '🏷️ 입력창의 이름표',
+        'table': '📊 표를 만드는 태그', 'tr': '➖ 표의 가로 줄', 'td': '▫️ 표의 칸(데이터)', 'th': '💎 표의 제목 칸',
+        'form': '📩 입력 양식 전체 상자', 'meta': '⚙️ 웹페이지의 정보 설정', 'link': '🖇️ 외부 파일(CSS 등) 연결',
+        'script': '📜 자바스크립트 코드 연결', 'header': '🏠 머리말 구역', 'footer': '🏁 꼬리말 구역', 'section': '📑 큰 구역 구분',
+        'audio': '🎵 소리를 재생하는 태그', 'video': '🎬 영상을 재생하는 태그', 'iframe': '🖼️ 다른 페이지를 삽입',
+        'canvas': '🎨 그림을 그리는 영역', 'svg': '📐 벡터 그래픽 그리기', 'nav': '🧭 네비게이션 메뉴 구역',
+        
+        // HTML Attributes
+        'href': '🔗 연결할 주소(URL)', 'src': '📂 이미지나 파일의 경로', 'alt': '💬 이미지 설명(대체 텍스트)',
+        'class': '🏷️ 여러 번 쓸 수 있는 스타일 이름', 'id': '🆔 한 번만 쓰는 고유 이름', 'style': '🎨 직접 디자인 설정',
+        'target': '📤 링크가 열릴 창 (_blank: 새창)', 'type': '⚙️ 입력창의 종류', 'placeholder': '💡 미리 보여줄 글자',
+        'value': '💎 기본값/입력된 값', 'width': '↔️ 가로 길이', 'height': '↕️ 세로 길이', 'name': '📛 서버로 보낼 데이터 이름',
+        'rel': '🔗 현재 페이지와 관계 설정', 'method': '📤 데이터 전송 방식', 'action': '🎯 데이터를 보낼 주소',
+        'autoplay': '▶️ 자동 재생 설정', 'controls': '⏯️ 재생 컨트롤 표시', 'loop': '🔁 반복 재생 설정',
+        
+        // CSS Properties
+        'color': '🎨 글자 색상', 'background-color': '🖼️ 배경 색상', 'font-size': '📏 글자 크기',
+        'font-weight': '💪 글자 두께', 'text-align': '↔️ 텍스트 정렬', 'padding': '📦 안쪽 여백',
+        'margin': '↔️ 바깥 여백', 'border': '🖼️ 테두리', 'border-radius': '🟡 테두리 둥글게',
+        'width': '↔️ 가로 너비', 'height': '↕️ 세로 높이', 'display': '👁️ 보여주는 방식',
+        'flex': '🧩 유연한 박스 설정', 'justify-content': '↔️ 가로 정렬 방식', 'align-items': '↕️ 세로 정렬 방식',
+        'position': '📍 위치 설정 방식', 'top': '⬆️ 위에서부터 거리', 'left': '⬅️ 왼쪽에서부터 거리',
+        'cursor': '🖱️ 마우스 커서 모양', 'opacity': '👻 투명도 (0~1)', 'transition': '⏳ 부드러운 변화 (애니메이션)',
+        'z-index': '📚 겹치는 순서 (높을수록 위)', 'overflow': '🌊 넘치는 내용 처리', 'box-shadow': '🌘 상자 그림자',
+        'white-space': '⌨️ 공백 처리 방식', 'list-style': '🔹 목록 기호 설정', 'transform': '🔄 모양 변형 (회전, 크기 등)',
+        'animation': '🎬 애니메이션 효과', 'background-image': '🖼️ 배경 이미지 설정', 'box-sizing': '📏 박스 크기 계산 방식',
+        
+        // JS Keywords/Methods
+        'const': '🔒 변하지 않는 변수 선언', 'let': '🔓 변할 수 있는 변수 선언', 'var': '⚠️ (구형) 변수 선언',
+        'function': '⚙️ 함수 정의', 'if': '❓ 조건문 (만약 ~라면)', 'else': '❗ 조건문 (그렇지 않으면)',
+        'for': '🔁 반복문 (정해진 횟수만큼)', 'while': '🔄 반복문 (조건이 맞는 동안)', 'return': '🔙 결과값 반환/함수 종료',
+        'document': '📄 현재 문서(웹페이지) 객체', 'getElementById': '🆔 ID로 요소 찾기',
+        'querySelector': '🔍 CSS 선택자로 요소 찾기', 'querySelectorAll': '🔍 모든 요소를 리스트로 찾기',
+        'addEventListener': '⚡ 이벤트 발생 감지', 'console.log': '🖥️ 콘솔에 내용 출력', 
+        'window': '🌐 브라우저 창 객체', 'alert': '🔔 경고창 띄우기', 'class': '🏗️ 객체 설계도 정의',
+        'setTimeout': '⏰ 일정 시간 뒤 실행', 'setInterval': '🔄 일정 시간마다 반복 실행',
+        'localStorage': '💾 브라우저에 데이터 저장', 'JSON.parse': '📦 문자열을 객체로 변환',
+        'Math.random': '🎲 랜덤한 숫자 생성', 'Math.floor': '📉 소수점 내림', 'fetch': '🌐 데이터 서버에서 가져오기'
     },
 
     attributeValues: {
         'type': {
-            'text': '일반 텍스트 입력창', 'password': '비밀번호 입력창', 'button': '클릭용 버튼',
-            'checkbox': '다중 선택 체크박스', 'radio': '단일 선택 라디오', 'color': '색상 선택기'
+            'text': '⌨️ 일반 텍스트 입력창', 'password': '🔒 비밀번호 입력창', 'button': '🖱️ 클릭용 버튼',
+            'checkbox': '✅ 다중 선택 체크박스', 'radio': '🔘 단일 선택 라디오', 'color': '🎨 색상 선택기',
+            'email': '📧 이메일 주소 입력', 'number': '🔢 숫자 입력창', 'date': '📅 날짜 선택기',
+            'range': '↔️ 범위 선택 슬라이더', 'file': '📂 파일 업로드', 'submit': '📤 전송 버튼', 'reset': '🔄 입력 초기화 버튼'
         },
-        'text-align': { 'center': '가운데 정렬', 'left': '왼쪽 정렬', 'right': '오른쪽 정렬', 'justify': '양쪽 맞춤' },
-        'display': { 'flex': '유연한 박스 레이아웃', 'block': '한 줄 다 차지', 'inline-block': '글자처럼 흐름', 'none': '숨기기' },
-        'justify-content': { 'center': '가운데 정렬', 'space-between': '양 끝 벌리기', 'space-around': '일정 간격' },
-        'align-items': { 'center': '세로 가운데', 'flex-start': '세로 위쪽', 'flex-end': '세로 아래쪽', 'stretch': '가득 채움' },
-        'border': { '1px solid black': '1px 검정 실선', '2px dashed #38bdf8': '2px 하늘색 점선', 'none': '테두리 없음' },
-        'font-weight': { 'bold': '굵게', 'normal': '보통 두께', '900': '가장 두껍게' },
-        'cursor': { 'pointer': '손가락 모양', 'default': '화살표', 'not-allowed': '금지 모양' },
-        'position': { 'relative': '현재 기준', 'absolute': '부모 안에서 자유롭게', 'fixed': '화면 고정' },
-        'padding': { '10px': '모든 방향 10px', '20px': '모든 방향 20px' },
-        'margin': { '10px': '모든 방향 10px', '0 auto': '가운데 정렬용' },
-        'border-radius': { '5px': '약간 둥글게', '10px': '많이 둥글게', '50%': '완전 동그랗게' }
+        'target': {
+            '_blank': '🆕 새 탭에서 열기', '_self': '🏠 현재 탭에서 열기',
+            '_parent': '⬆️ 부모 프레임에서 열기', '_top': '🔝 최상단 창에서 열기'
+        },
+        'rel': {
+            'noopener': '🛡️ 보안을 위해 새창 연결 차단', 'noreferrer': '🔒 참조 정보 숨김',
+            'stylesheet': '🖇️ CSS 파일 연결', 'icon': '🖼️ 파비콘 설정'
+        },
+        'method': { 'get': '🔍 데이터 조회 방식(주소에 표시)', 'post': '🔒 데이터 전송 방식(숨겨서 전송)' },
+        'text-align': { 'center': '↔️ 가운데 정렬', 'left': '⬅️ 왼쪽 정렬', 'right': '➡️ 오른쪽 정렬', 'justify': '↔️ 양쪽 맞춤' },
+        'display': { 'flex': '🧩 유연한 박스 레이아웃', 'block': '📦 한 줄 다 차지', 'inline-block': '📏 글자처럼 흐름', 'none': '👻 숨기기', 'grid': '🏁 격자 레이아웃', 'inline': '📏 줄 안의 요소' },
+        'justify-content': { 'center': '↔️ 가운데 정렬', 'space-between': '↔️ 양 끝 벌리기', 'space-around': '↔️ 일정 간격', 'flex-start': '⬅️ 앞으로 정렬', 'flex-end': '➡️ 뒤로 정렬' },
+        'align-items': { 'center': '↕️ 세로 가운데', 'flex-start': '⬆️ 세로 위쪽', 'flex-end': '⬇️ 세로 아래쪽', 'stretch': '↕️ 가득 채움' },
+        'flex-direction': { 'row': '➡️ 가로 방향', 'column': '⬇️ 세로 방향', 'row-reverse': '⬅️ 가로 역순', 'column-reverse': '⬆️ 세로 역순' },
+        'flex-wrap': { 'nowrap': '🚫 줄바꿈 없음', 'wrap': '🔄 줄바꿈 허용', 'wrap-reverse': '🔄 역순 줄바꿈' },
+        'border': { '1px solid black': '📏 1px 검정 실선', '2px dashed #38bdf8': '📏 2px 하늘색 점선', 'none': '🚫 테두리 없음' },
+        'font-weight': { 'bold': '💪 굵게', 'normal': '📏 보통 두께', '100': '얇게', '900': '매우 굵게' },
+        'cursor': { 'pointer': '🖱️ 손가락 모양', 'default': '🖱️ 화살표', 'not-allowed': '🚫 금지 모양', 'wait': '⏳ 로딩 중 모양', 'help': '❓ 도움말 모양' },
+        'position': { 'relative': '📍 현재 기준', 'absolute': ' 부모 안에서 자유롭게', 'fixed': '🌐 화면 고정', 'sticky': '📌 스크롤 고정' },
+        'overflow': { 'visible': '👁️ 다 보여주기', 'hidden': '👻 넘치는 부분 숨기기', 'scroll': '📜 스크롤바 표시', 'auto': '🔄 자동 스크롤' },
+        'object-fit': { 'cover': '🖼️ 비율 맞춰 가득 채움', 'contain': '🖼️ 비율 맞춰 전체 보여줌', 'fill': '🖼️ 꽉 채우기 (왜곡 발생)' },
+        'padding': { '10px': '📦 모든 방향 10px', '20px': '📦 모든 방향 20px', '0': '🚫 여백 없음' },
+        'margin': { '10px': '↔️ 모든 방향 10px', '0 auto': '↔️ 가운데 정렬용', '0': '🚫 여백 없음' },
+        'border-radius': { '5px': '🟡 약간 둥글게', '10px': '🟠 많이 둥글게', '50%': '🟢 완전 동그랗게', '0': '🟦 직각 테두리' }
     },
 
     getHints: function(cmInstance) {
