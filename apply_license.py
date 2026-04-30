@@ -10,7 +10,7 @@ INFO = {
     "CREATOR": "XYLO",
     "HANDLE": "@xylito",
     "POWERED_BY": "DORO Inc.",
-    "VERSION": "1.4.0",
+    "VERSION": "1.4.1",
     "DATE": "2026.04.30.",
     "YEAR": "2026",
     "SOURCE": "https://github.com/xylito/doroland-smart-guide",
@@ -78,9 +78,37 @@ def update_license_file():
     except Exception as e:
         print(f"❌ LICENSE 업데이트 중 오류: {e}")
 
+def update_readme_file():
+    """README.md 파일의 제목 옆에 버전 정보를 업데이트합니다."""
+    filepath = "README.md"
+    if not os.path.exists(filepath):
+        return
+        
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # 제목 옆의 버전 정보 업데이트 (# 제목 Version x.x.x (yyyy.mm.dd.))
+        version_str = f"Version {INFO['VERSION']} ({INFO['DATE']})"
+        
+        # 기존 버전 패턴이 있으면 교체, 없으면 제목 뒤에 추가
+        if "Version" in content.split('\n')[0]:
+            content = re.sub(r"Version \d+\.\d+\.\d+ \(.*?\)", version_str, content, count=1)
+        else:
+            lines = content.split('\n')
+            lines[0] = f"{lines[0].strip()} {version_str}"
+            content = '\n'.join(lines)
+            
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        print(f"📝 README.md 파일 업데이트 완료")
+    except Exception as e:
+        print(f"❌ README.md 업데이트 중 오류: {e}")
+
 def apply_license():
-    # 1. LICENSE 파일 먼저 업데이트
+    # 1. 문서 파일들 먼저 업데이트
     update_license_file()
+    update_readme_file()
     
     count = 0
     # 현재 디렉토리부터 하위 폴더까지 모두 탐색
@@ -139,7 +167,7 @@ def apply_license():
                 except Exception as e:
                     print(f"❌ 오류 발생 ({filepath}): {e}")
     
-    print(f"\n✨ 총 {count}개의 파일과 LICENSE 파일이 업데이트되었습니다!")
+    print(f"\n✨ 총 {count}개의 파일과 LICENSE, README 파일이 업데이트되었습니다!")
 
 if __name__ == "__main__":
     apply_license()
