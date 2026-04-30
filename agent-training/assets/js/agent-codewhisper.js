@@ -207,10 +207,12 @@ window.Codewhisper = {
             }
 
             // 3. JavaScript 스타일 값 대입 추천 (style.color = " 등)
-            const jsStyleMatch = beforeCursorLine.match(/\.style\.([a-zA-Z0-9_$]+)\s*=\s*["']?([^"']*)$/);
+            const jsStyleMatch = beforeCursorLine.match(/\.style\.([a-zA-Z0-9_$]+)\s*=\s*(["']?)([^"']*)$/);
             if (jsStyleMatch) {
                 const prop = jsStyleMatch[1]; // color, backgroundColor 등
-                const curVal = jsStyleMatch[2].toLowerCase();
+                const hasQuote = !!jsStyleMatch[2];
+                const curVal = jsStyleMatch[3].toLowerCase();
+                const valStart = cur.ch - curVal.length - (hasQuote ? 1 : 0);
                 let suggestions = [];
 
                 if (prop === "color" || prop === "backgroundColor" || prop === "borderColor") {
@@ -230,7 +232,7 @@ window.Codewhisper = {
                     });
                 }
 
-                if (suggestions.length > 0) return { list: suggestions, from: CodeMirror.Pos(cur.line, cur.ch - curVal.length), to: cur };
+                if (suggestions.length > 0) return { list: suggestions, from: CodeMirror.Pos(cur.line, valStart), to: cur };
             }
         }
 
