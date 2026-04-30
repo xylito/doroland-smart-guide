@@ -68,7 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
             tabSize: 4,
             indentWithTabs: false,
             smartIndent: true,
-            extraKeys: {"Ctrl-Space": "autocomplete"},
+            matchBrackets: true,
+            extraKeys: {
+                "Ctrl-Space": "autocomplete",
+                "Enter": "newlineAndIndent"
+            },
             autoCloseTags: true,
             autoCloseBrackets: true
         });
