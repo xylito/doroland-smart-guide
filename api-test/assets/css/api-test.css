@@ -229,6 +229,7 @@ header {
     align-items: center;
     gap: 10px;
     line-height: 1;
+    transition: all 0.4s ease;
 }
 
 [data-theme="dark"] .logo {
@@ -272,6 +273,7 @@ header {
     justify-content: center;
     animation: pulse 2s infinite;
     margin-left: 10px;
+    transition: all 0.4s ease;
 }
 
 [data-theme="dark"] .status-badge {
@@ -294,7 +296,7 @@ header {
     padding: 20px; /* agent-training의 내부 패딩과 일치 */
     box-sizing: border-box; /* 패딩 포함 너비 계산 */
     overflow: hidden;
-    transition: background-color 0.4s ease;
+    transition: all 0.4s ease;
 }
 
 /* Swagger 내부 UI 일부 커스텀 */
@@ -323,7 +325,7 @@ header {
     border-top: 1px solid var(--footer-border);
     margin-top: auto;
     z-index: 10;
-    transition: background-color 0.4s ease, color 0.4s ease;
+    transition: all 0.4s ease;
 }
 .ui-footer a {
     color: var(--footer-link);
