@@ -91,7 +91,12 @@ window.Codewhisper = {
         'object-fit': { 'cover': '🖼️ 비율 맞춰 가득 채움', 'contain': '🖼️ 비율 맞춰 전체 보여줌', 'fill': '🖼️ 꽉 채우기 (왜곡 발생)' },
         'padding': { '10px': '📦 모든 방향 10px', '20px': '📦 모든 방향 20px', '0': '🚫 여백 없음' },
         'margin': { '10px': '↔️ 모든 방향 10px', '0 auto': '↔️ 가운데 정렬용', '0': '🚫 여백 없음' },
-        'border-radius': { '5px': '🟡 약간 둥글게', '10px': '🟠 많이 둥글게', '50%': '🟢 완전 동그랗게', '0': '🟦 직각 테두리' }
+        'border-radius': { '5px': '🟡 약간 둥글게', '10px': '🟠 많이 둥글게', '15px': '🟠 더 많이 둥글게', '50%': '🟢 완전 동그랗게', '0': '🟦 직각 테두리' },
+        'font-size': { '12px': '📏 작은 글씨', '16px': '📏 기본 글씨', '20px': '📏 조금 큰 글씨', '25px': '📏 큰 글씨 (제목용)' },
+        'text-shadow': { '2px 2px 4px rgba(0,0,0,0.2)': '🌘 부드러운 텍스트 그림자', 'none': '🚫 텍스트 그림자 없음' },
+        'box-shadow': { '2px 2px 4px rgba(0,0,0,0.2)': '🌘 부드러운 박스 그림자', 'none': '🚫 박스 그림자 없음' },
+        'transition': { 'all 0.5s ease': '⏳ 부드럽게 (0.5초)', 'all 1s ease': '⏳ 천천히 (1초)', 'none': '🚫 전환 효과 없음' },
+        'transform': { 'scale(1.1) rotate(5deg)': '🔄 1.1배 커지고 5도 회전', 'scale(1.2)': '🔍 1.2배 커짐', 'rotate(180deg)': '🔄 180도 뒤집기', '': '↩️ 원래 상태로 복구 (빈 문자열)' }
     },
 
     getHints: function(cmInstance) {
@@ -264,16 +269,56 @@ window.Codewhisper = {
                             suggestions.push({ text: "'" + c + "';", displayText: `🎨 '${c}'` });
                         }
                     });
-                } else if (prop === "display") {
-                    ["block", "none", "flex", "inline-block", "grid"].forEach(v => {
-                        if (v.startsWith(curVal)) suggestions.push({ text: "'" + v + "';", displayText: `📦 '${v}'` });
-                    });
-                } else if (prop === "cursor") {
-                    const cursorVals = { 'pointer': '손가락 모양', 'help': '도움말 모양 (물음표)', 'wait': '로딩 중 (모래시계/빙글빙글)', 'crosshair': '십자선 (조준점)', 'not-allowed': '금지 모양' };
-                    for (let v in cursorVals) {
-                        if (v.startsWith(curVal)) suggestions.push({ text: "'" + v + "';", displayText: `🖱️ '${v}' : ${cursorVals[v]}` });
+                } else {
+                    // 1. 카멜케이스(camelCase)를 CSS 하이픈(kebab-case)로 변환합니다 (예: backgroundColor -> background-color)
+                    const cssProp = prop.replace(/([A-Z])/g, "-$1").toLowerCase();
+                    
+                    // 2. 변환된 속성이 공용 데이터 사전(attributeValues)에 있는지 확인합니다.
+                    if (window.Codewhisper.attributeValues[cssProp]) {
+                        const vals = window.Codewhisper.attributeValues[cssProp];
+                        for (let v in vals) {
+                            if (v.startsWith(curVal)) {
+                                suggestions.push({ 
+                                    text: "'" + v + "';", 
+                                    displayText: `'${v}' : ${vals[v]}` 
+                                });
+                            }
+                        }
                     }
                 }
+
+                if (suggestions.length > 0) return { list: suggestions, from: CodeMirror.Pos(cur.line, valStart), to: cur };
+            }
+
+            // 4. JavaScript 이벤트 대입 추천 (onclick = function 등)
+            const jsEventMatch = beforeCursorLine.match(/\.(on[a-zA-Z]+)\s*=\s*([a-zA-Z0-9_$]*)$/);
+            if (jsEventMatch) {
+                const eventName = jsEventMatch[1];
+                const curVal = jsEventMatch[2].toLowerCase();
+                const valStart = cur.ch - curVal.length;
+                let suggestions = [];
+
+                if ("function".startsWith(curVal)) {
+                    suggestions.push({ 
+                        text: "function() {\n  \n};", 
+                        displayText: `⚙️ function() { ... } (새로운 마법 동작 만들기)` 
+                    });
+                }
+
+                // 문서 내에 미리 작성해둔 function 이름들(showMagic 등)을 찾아서 추천
+                const fullContent = cmInstance.getValue();
+                const funcMatches = fullContent.match(/function\s+([a-zA-Z0-9_$]+)/g) || [];
+                const localFuncs = new Set();
+                funcMatches.forEach(m => localFuncs.add(m.split(/\s+/).pop()));
+                
+                localFuncs.forEach(fname => {
+                    if (fname.toLowerCase().startsWith(curVal)) {
+                        suggestions.push({ 
+                            text: fname + ";", 
+                            displayText: `🪄 ${fname} (미리 써둔 마법 주문서 연결)` 
+                        });
+                    }
+                });
 
                 if (suggestions.length > 0) return { list: suggestions, from: CodeMirror.Pos(cur.line, valStart), to: cur };
             }
@@ -447,7 +492,7 @@ window.Codewhisper = {
             const mode = cm.getModeAt(change.from).name;
             const line = cm.getLine(change.from.line).slice(0, change.from.ch + char.length);
             
-            const trigger = /[\w-$<.\#:'"]/.test(char) || (char === " " && /<[a-z0-9-]+\s+$/i.test(line)) || (char === " " && /:\s*$/i.test(line));
+            const trigger = /[\w-$<.\#:'"=]/.test(char) || (char === " " && /<[a-z0-9-]+\s+$/i.test(line)) || (char === " " && /:\s*$/i.test(line)) || (char === " " && /=\s*$/.test(line));
             if (change.origin !== "+input" || !trigger) {
                 if (char === "}" && mode === "css") {
                     const cur = cm.getCursor();
