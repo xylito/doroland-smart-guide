@@ -69,10 +69,17 @@ window.CodewhisperDump = {
         <li><code>const</code> <b>상수 선언</b></li>
         <li><code>let</code> <b>변수 선언</b></li>
         <li><code>document</code> <b>문서 객체</b></li>
-        <li><code>querySelector()</code> <b>요소 선택하기</b></li>
+        <li><code>getElementById()</code> <b>ID로 요소 가져오기</b></li>
+        <li><code>getElementsByTagName()</code> <b>태그로 모든 요소 가져오기</b></li>
+        <li><code>getElementsByClassName()</code> <b>클래스로 모든 요소 가져오기</b></li>
+        <li><code>querySelector()</code> <b>선택자로 첫 번째 요소 가져오기</b></li>
+        <li><code>querySelectorAll()</code> <b>선택자로 모든 요소 가져오기</b></li>
         <li><code>addEventListener()</code> <b>이벤트 감지</b></li>
         <li><code>innerHTML</code> <b>내부 HTML 변경</b></li>
         <li><code>style</code> <b>실시간 디자인 변경</b></li>
+        <li><code>style.transform</code> <b>회전/크기 등 형태 변형</b></li>
+        <li><code>style.transition</code> <b>디자인 변화 애니메이션(전환)</b></li>
+        <li><code>style.cursor</code> <b>마우스 포인터 모양 변경</b></li>
         <li><code>fetch()</code> <b>외부 데이터 요청</b></li>
     `
 };

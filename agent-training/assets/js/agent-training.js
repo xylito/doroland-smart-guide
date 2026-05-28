@@ -141,7 +141,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function updatePreview() {
             const lines = window.cmEditor.getValue().split('\n');
+            let tempInStyle = false;
+            let tempInScript = false;
             let modifiedHtmlLines = lines.map((line, idx) => {
+                let text = line.trim();
+                let wasInBlock = tempInStyle || tempInScript;
+                
+                if (text.startsWith('<style>')) tempInStyle = true;
+                else if (text.startsWith('</style>')) tempInStyle = false;
+                else if (text.startsWith('<script>')) tempInScript = true;
+                else if (text.startsWith('</script>')) tempInScript = false;
+                
+                let isInBlock = tempInStyle || tempInScript;
+                let isTagLine = text.startsWith('<style>') || text.startsWith('</style>') || text.startsWith('<script>') || text.startsWith('</script>');
+                
+                if (wasInBlock || isInBlock || isTagLine) {
+                    return line;
+                }
                 return line.replace(/<([a-zA-Z0-9\-]+)(?![^>]*\bdata-source-line\b)([^>]*)>/g, '<$1 data-source-line="' + idx + '"$2>');
             });
             let htmlContent = modifiedHtmlLines.join('\n');

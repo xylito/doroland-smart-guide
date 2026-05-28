@@ -85,7 +85,7 @@ window.Codewhisper = {
         'flex-wrap': { 'nowrap': '🚫 줄바꿈 없음', 'wrap': '🔄 줄바꿈 허용', 'wrap-reverse': '🔄 역순 줄바꿈' },
         'border': { '1px solid black': '📏 1px 검정 실선', '2px dashed #38bdf8': '📏 2px 하늘색 점선', 'none': '🚫 테두리 없음' },
         'font-weight': { 'bold': '💪 굵게', 'normal': '📏 보통 두께', '100': '얇게', '900': '매우 굵게' },
-        'cursor': { 'pointer': '🖱️ 손가락 모양', 'default': '🖱️ 화살표', 'not-allowed': '🚫 금지 모양', 'wait': '⏳ 로딩 중 모양', 'help': '❓ 도움말 모양' },
+        'cursor': { 'pointer': '🖱️ 손가락 모양', 'default': '🖱️ 화살표', 'not-allowed': '🚫 금지 모양', 'wait': '⏳ 로딩 중 모양', 'help': '❓ 도움말 모양', 'crosshair': '🎯 십자선 (조준점)' },
         'position': { 'relative': '📍 현재 기준', 'absolute': ' 부모 안에서 자유롭게', 'fixed': '🌐 화면 고정', 'sticky': '📌 스크롤 고정' },
         'overflow': { 'visible': '👁️ 다 보여주기', 'hidden': '👻 넘치는 부분 숨기기', 'scroll': '📜 스크롤바 표시', 'auto': '🔄 자동 스크롤' },
         'object-fit': { 'cover': '🖼️ 비율 맞춰 가득 채움', 'contain': '🖼️ 비율 맞춰 전체 보여줌', 'fill': '🖼️ 꽉 채우기 (왜곡 발생)' },
@@ -269,9 +269,10 @@ window.Codewhisper = {
                         if (v.startsWith(curVal)) suggestions.push({ text: "'" + v + "';", displayText: `📦 '${v}'` });
                     });
                 } else if (prop === "cursor") {
-                    ["pointer", "default", "wait", "move", "not-allowed"].forEach(v => {
-                        if (v.startsWith(curVal)) suggestions.push({ text: "'" + v + "';", displayText: `🖱️ '${v}'` });
-                    });
+                    const cursorVals = { 'pointer': '손가락 모양', 'help': '도움말 모양 (물음표)', 'wait': '로딩 중 (모래시계/빙글빙글)', 'crosshair': '십자선 (조준점)', 'not-allowed': '금지 모양' };
+                    for (let v in cursorVals) {
+                        if (v.startsWith(curVal)) suggestions.push({ text: "'" + v + "';", displayText: `🖱️ '${v}' : ${cursorVals[v]}` });
+                    }
                 }
 
                 if (suggestions.length > 0) return { list: suggestions, from: CodeMirror.Pos(cur.line, valStart), to: cur };
