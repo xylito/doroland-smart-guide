@@ -111,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.resetCode = function() {
             if (confirm("작성 중인 코드를 초기화하고 처음 상태로 되돌리겠습니까?")) {
                 localStorage.removeItem(storageKey);
+                localStorage.removeItem('doroland_guestbook'); // API 방명록 DB도 함께 초기화
                 if (window.agentInitialCode) {
                     window.cmEditor.setValue(window.agentInitialCode);
                 }
@@ -380,7 +381,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             let finalHtml = htmlContent;
             const screenshotScript = '<script src="../assets/js/global-screenshot.js"></script>';
-            const injection = customStyles + '\n' + inspectorScript + '\n' + screenshotScript;
+            const mockAPI = window.agentMockAPI || '';
+            const injection = customStyles + '\n' + mockAPI + '\n' + inspectorScript + '\n' + screenshotScript;
             
             if (finalHtml.includes('</head>')) {
                 finalHtml = finalHtml.replace('</head>', injection + '\n</head>');

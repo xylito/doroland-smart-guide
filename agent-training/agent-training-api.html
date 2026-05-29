@@ -224,6 +224,10 @@
                     <p>
                         요원이 무사히 통신을 하고 돌아왔지만, 화면을 바꾸라고 명령하지 않았기 때문이야. 키보드에서 <b>F12</b>(개발자 도구)를 누르고 <b>Network(네트워크)</b> 탭을 연 뒤 버튼을 다시 눌러봐! 진짜로 통신이 슝~ 날아가는 게 보일 거야.
                     </p>
+                    <p>✨ <b>JS 작동 원리 탐구: 숨겨진 GET 명령표</b></p>
+                    <p>
+                        우리가 방금 쓴 <span class="inline-code">fetch(주소)</span>는 사실 뒤에 무언가가 생략되어 있단다. 원래는 <span class="inline-code">fetch(주소, { method: 'GET' })</span> 이라고 적어야 해! 아무 말 없이 심부름을 보내면, 요원은 기본적으로 데이터를 <b>'가져오기(GET)'</b>만 한다는 사실을 기억해 둬!
+                    </p>
                 </div>
 
                 <div class="mission-card">
@@ -365,6 +369,66 @@
                         콘솔창을 보니 이번엔 <b>[ { url: '고양이주소' } ]</b> 처럼 바깥쪽이 대괄호 <b>[ ]</b> 로 한 번 더 싸여있는 걸 발견했니? 이걸 <b>'배열(Array)'</b> 상자라고 부른단다. 여러 개의 데이터가 기차처럼 줄지어 들어올 때 쓰는 특별한 상자야!
                     </p>
                 </div>
+
+                <div class="mission-card">
+                    <div class="mission-step">심화 미션 10</div>
+                    <h3>비밀 방명록 남기기 (POST)</h3>
+                    <p>사진을 잘 봤다면 이제 방명록을 남겨볼까? 요원에게 데이터를 단순히 가져오는(GET) 게 아니라, <b>새로 만들어 달라고(POST)</b> 요청할 수 있단다!</p>
+                    <p>
+                        [1] 편집기 맨 아래쪽 <b>'미션 10' 구역</b>을 찾아보렴!<br>
+                        [2] <span class="inline-code">{ method: 'POST' }</span> 라는 특별 임무와 함께, 우리가 쓴 글(<span class="inline-code">body</span>)을 쥐여 보내자.
+                    </p>
+                    <span class="tag-hint">힌트: method: 'POST', body: JSON.stringify(...) 사용</span><br>
+                    <code>  const message = document.getElementById("guestbook-input").value;
+  
+  fetch('/api/guestbook', {
+    method: 'POST',
+    body: JSON.stringify({ text: message })
+  })
+  .then(response =&gt; response.json())
+  .then(data =&gt; alert("방명록이 등록되었습니다! (ID: " + data.id + ")"));</code>
+                    <p>✨ <b>팁:</b> 진짜 비밀 서버라서 새로고침 버튼을 누르면 서버에 저장된 내 글을 가져올 거야!</p>
+                </div>
+
+                <div class="mission-card">
+                    <div class="mission-step">심화 미션 11</div>
+                    <h3>방명록 불러오기 (GET)</h3>
+                    <p>우리가 방금 등록한 방명록이 서버에 잘 저장되었는지 <b>가져와서(GET)</b> 화면에 그려보자!</p>
+                    <p>
+                        [1] <b>'미션 11' 구역</b>에 <span class="inline-code">fetch(GET)</span> 마법을 적어봐.<br>
+                        [2] 가져온 데이터를 리스트에 차례대로 그려주자!
+                    </p>
+                    <span class="tag-hint">힌트: fetch('/api/guestbook') 사용</span><br>
+                    <code>  fetch('/api/guestbook')
+  .then(response =&gt; response.json())
+  .then(data =&gt; {
+    const list = document.getElementById("guestbook-list");
+    list.innerHTML = ""; // 기존 목록 비우기
+    data.forEach(post =&gt; {
+      list.innerHTML += "&lt;li&gt;" + post.title + "&lt;/li&gt;";
+    });
+  });</code>
+                    <p>✨ <b>팁:</b> 서버에서 가져온 글들을 반복문(forEach)을 이용해 하나씩 꺼내 화면에 그려주는 거란다!</p>
+                </div>
+
+                <div class="mission-card">
+                    <div class="mission-step">심화 미션 12</div>
+                    <h3>내가 쓴 흔적 지우기 (DELETE)</h3>
+                    <p>방명록이 마음에 들지 않아? 그럼 요원에게 화면의 방명록 리스트를 <b>지워 달라고(DELETE)</b> 요청해 보자!</p>
+                    <p>
+                        [1] 편집기 맨 아래쪽 <b>'미션 12' 구역</b>을 찾아보렴!<br>
+                        [2] <span class="inline-code">{ method: 'DELETE' }</span> 라는 특별 임무를 주고 화면도 초기화하자!
+                    </p>
+                    <span class="tag-hint">힌트: method: 'DELETE', innerHTML = "" 사용</span><br>
+                    <code>  fetch('/api/guestbook', {
+    method: 'DELETE'
+  })
+  .then(response =&gt; {
+    alert("서버에서 흔적이 삭제되었습니다! 화면도 지울게! 🗑️");
+    document.getElementById("guestbook-list").innerHTML = "";
+  });</code>
+                    <p>✨ <b>팁:</b> 통신이 끝난 후 화면의 리스트 안쪽(<span class="inline-code">innerHTML</span>)을 아무것도 없는 텅 빈 상태(<span class="inline-code">""</span>)로 만들면 화면도 감쪽같이 지워진단다!</p>
+                </div>
             </div>
         </div>
 
@@ -428,6 +492,13 @@
         #cat-btn { background: #ec4899; } #cat-btn:hover { background: #db2777; }
         button:active { transform: scale(0.95); }
         #main-img { border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: block; margin: 0 auto; width: 400px; height: 300px; object-fit: cover; }
+        .guestbook-section { margin-top: 30px; padding-top: 20px; border-top: 2px dashed #cbd5e1; text-align: center; }
+        #guestbook-input { width: 80%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 16px; margin-bottom: 10px; box-sizing: border-box; }
+        #post-btn { background: #3b82f6; } #post-btn:hover { background: #2563eb; }
+        #refresh-btn { background: #10b981; } #refresh-btn:hover { background: #059669; }
+        #delete-btn { background: #ef4444; } #delete-btn:hover { background: #dc2626; }
+        #guestbook-list li { padding: 5px; border-bottom: 1px solid #ddd; }
+        #guestbook-list li:last-child { border-bottom: none; }
     </style>
 </head>
 <body>
@@ -443,6 +514,18 @@
     
     <!-- 이 액자의 사진 소스(src)를 멍냥 사진으로 바꿀 거란다! -->
     <img id="main-img" src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=600&auto=format&fit=crop" alt="귀여운 동물">
+
+    <div class="guestbook-section">
+        <h3>📝 멍냥 사진관 비밀 방명록</h3>
+        <input type="text" id="guestbook-input" placeholder="사진에 대한 감상을 남겨주세요!">
+        <div class="btn-group">
+            <button id="post-btn">등록 (POST)</button>
+            <button id="refresh-btn" style="color:white;">새로고침 (GET)</button>
+            <button id="delete-btn">초기화 (DELETE)</button>
+        </div>
+        <ul id="guestbook-list" style="list-style: none; padding: 10px; margin-top: 15px; text-align: left; font-size: 15px; max-width: 400px; margin-left: auto; margin-right: auto; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; min-height: 20px;">
+        </ul>
+    </div>
 
     <script>
         //dog-btn을 찾아 dogBtn 보관함에 연결 시켜놨단다!
@@ -476,6 +559,31 @@
             // 아래에 고양이 버튼을 눌렀을 때 일어날 마법 주문을 적어주렴!
             // 미션 8: alert 후 고양이 통신 요원 파견하고 엑스레이로 배열 데이터 관찰하기 (fetch)
             
+            // 👇 미션 9: 이 아래에 0번째 상자를 열어서 사진을 꺼내는 마법을 넣을 거야!
+            
+        };
+        
+        // ----------------------------------------------------
+        // 📝 비밀 방명록 남기기, 구경하기, 지우기 (미션 10, 11, 12)
+        
+        const postBtn = document.getElementById("post-btn");
+        postBtn.onclick = function() {
+            // 👇 미션 10: 비밀 방명록 남기기 (POST)
+            
+            
+        };
+
+        const refreshBtn = document.getElementById("refresh-btn");
+        refreshBtn.onclick = function() {
+            // 👇 미션 11: 다른 요원의 글 훔쳐보기 (GET)
+            
+            
+        };
+        
+        const deleteBtn = document.getElementById("delete-btn");
+        deleteBtn.onclick = function() {
+            // 👇 미션 12: 내가 쓴 흔적 지우기 (DELETE)
+            
             
         };
     <\/script>
@@ -501,6 +609,45 @@
             text-decoration: underline;
         }
     </style>`;
+    window.agentMockAPI = `
+<script>
+        // --- 🤫 도로랜드 비밀 서버 (Mock API) ---
+        const originalFetch = window.fetch;
+        window.fetch = function(url, options) {
+            if (url.includes('/api/guestbook')) {
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        let posts = JSON.parse(localStorage.getItem('doroland_guestbook') || 'null');
+                        if (!posts) {
+                            posts = [
+                                { id: 1, title: '강아지 사진 너무 귀여워요! 🐶' },
+                                { id: 2, title: '고양이도 보고 싶어요~ 🐱' },
+                                { id: 3, title: 'API 통신 너무 신기해요! ✨' }
+                            ];
+                            localStorage.setItem('doroland_guestbook', JSON.stringify(posts));
+                        }
+                        
+                        const method = (options && options.method) ? options.method : 'GET';
+                        
+                        if (method === 'GET') {
+                            resolve(new Response(JSON.stringify(posts)));
+                        } else if (method === 'POST') {
+                            const body = JSON.parse(options.body);
+                            const newPost = { id: Date.now(), title: body.text };
+                            posts.push(newPost);
+                            localStorage.setItem('doroland_guestbook', JSON.stringify(posts));
+                            resolve(new Response(JSON.stringify(newPost)));
+                        } else if (method === 'DELETE') {
+                            localStorage.setItem('doroland_guestbook', '[]');
+                            resolve(new Response(JSON.stringify({ success: true })));
+                        }
+                    }, 300);
+                });
+            }
+            return originalFetch(url, options);
+        };
+        // ----------------------------------------
+<\/script>`;
     </script>
     <script src="./assets/js/agent-dict-dump.js"></script>
     <script src="./assets/js/agent-codewhisper.js"></script>
