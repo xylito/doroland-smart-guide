@@ -199,7 +199,7 @@
                 <div class="mission-card">
                     <div class="mission-step">미션 1</div>
                     <h3>마법 지팡이로 제목 찾기</h3>
-                    <p>HTML에 있는 큰 제목(main-title)을 찾아서 'title'이라는 상자에 담아보자꾸나!</p>
+                    <p>HTML에 있는 큰 제목(main-title)을 찾아서 'title'이라는 보관함에 담아보자꾸나!</p>
                     <p>💡 <b>상수 const:</b> <span class="inline-code">const</span>는 절대 열리지 않는 <b>'안전한 보관함'</b>이란다! 한 번 이름을 붙여서 무언가를 담아두면, 다른 마법사가 와도 내용물을 함부로 바꿀 수 없지.</p>
                     <span class="tag-hint">힌트: document.getElementById 사용</span><br>
                     <code>const title = document.getElementById('main-title');</code>
@@ -320,7 +320,7 @@ title.onmouseout = function() {
                     <h3>사진 크기 조절하기 (마우스 이벤트 복습)</h3>
                     <p>이번에는 방금 배운 마우스 이벤트를 사진에 적용해서 복습해 보자꾸나!</p>
                     <p>
-                        [1] 사진(아이디: <span class="inline-code">main-img</span>)을 찾아 변수에 저장하고<br>
+                        [1] 사진(아이디: <span class="inline-code">main-img</span>)을 찾아 상수(const)에 저장하고<br>
                         [2] 마우스가 닿을 때(<span class="inline-code">onmouseover</span>) 0.9배로 작아지게 만들고<br>
                         [3] 마우스가 떠날 때(<span class="inline-code">onmouseout</span>) 원래 크기로 되돌려 보렴!
                     </p>
@@ -342,7 +342,7 @@ img.onmouseout = function() {
                     <p>이번에는 환영 알림을 띄우는 나만의 모음집(<span class="inline-code">function</span>)을 만들고, 버튼과 연결해서 직접 발동시켜 보자!</p>
                     <p>
                         [1] <span class="inline-code">showMagic</span> 이라는 이름의 모음집을 만들고 알림창(<span class="inline-code">alert</span>) 마법 넣기<br>
-                        [2] 마법 버튼(아이디: <span class="inline-code">magic-btn</span>)을 찾아 변수에 저장하기<br>
+                        [2] 마법 버튼(아이디: <span class="inline-code">magic-btn</span>)을 찾아 상수(const)에 저장하기<br>
                         [3] 버튼을 클릭할 때(<span class="inline-code">onclick</span>) <span class="inline-code">showMagic</span> 모음집이 실행되도록 연결하기
                     </p>
                     <span class="tag-hint">힌트: function, alert, document.getElementById, onclick 사용</span><br>
@@ -369,7 +369,7 @@ btn.onclick = showMagic;</code>
                     <h3>비밀 통신망에 기록 남기기 (콘솔)</h3>
                     <p>방금 배운 팝업창(<span class="inline-code">prompt</span>)을 활용해 투입할 요원의 이름을 입력받고, 비밀 통신망인 콘솔(<span class="inline-code">console.log</span>)과 화면의 제목을 동시에 바꿔보자!</p>
                     <p>
-                        [1] <span class="inline-code">prompt</span> 로 투입할 요원의 이름을 물어보고 변수에 저장하고<br>
+                        [1] <span class="inline-code">prompt</span> 로 투입할 요원의 이름을 물어보고 상수(const)에 저장하고<br>
                         [2] <span class="inline-code">console.log</span> 를 이용해 콘솔에 투입 준비 완료 메시지를 남기고<br>
                         [3] 미션 2에서 배웠던 <span class="inline-code">title.innerText</span>를 활용해 화면의 제목 내용도 함께 바꿔 보렴!
                     </p>
