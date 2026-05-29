@@ -243,6 +243,10 @@
                     <p>
                         인터넷 너머 서버로 보낸 요원이 언제 돌아올지 우리는 정확히 알 수 없어. 1초가 걸릴 수도, 5초가 걸릴 수도 있지! 그래서 <b>.then(...)</b>이라는 '기다림의 마법'을 쓰는 거야. <b>"요원이 돌아올 때까지 기다렸다가, 도착하면 이 중괄호 { } 안의 명령을 실행해 줘!"</b> 라는 뜻이란다.
                     </p>
+                    <p>✨ <b>JS 작동 원리 탐구: 괄호 안의 response는 어떻게 들어온 걸까?</b></p>
+                    <p>
+                        통신 요원(fetch)이 강아지 본부에서 돌아올 때 빈손으로 오지 않겠죠? 무언가 <b>응답 배낭</b>을 메고 옵니다. <span class="inline-code">.then</span> 마법이 발동될 때, 요원이 메고 온 그 배낭을 <span class="inline-code">function(response)</span>의 괄호 안으로 쏙! 하고 던져주는(넘겨주는) 것이랍니다. 그래서 우리는 <span class="inline-code">response</span>라는 이름으로 그 배낭(결과값)을 받아 열어볼 수 있는 거예요!
+                    </p>
                 </div>
 
                 <div class="mission-card">
@@ -281,7 +285,7 @@
                 </div>
 
                 <div class="mission-card">
-                    <div class="mission-step">심화 미션 6 (최종 완성)</div>
+                    <div class="mission-step">심화 미션 6</div>
                     <h3>실패에 대비하는 든든한 방패 (.catch)</h3>
                     <p>인터넷 세상에서는 언제든 서버가 고장 나거나 랜선이 뽑힐 수 있어. 에러가 나면 훈련생들이 당황하지 않게 방패(<span class="inline-code">.catch</span>)를 세워 알림을 띄워주자!</p>
                     <p>
@@ -296,23 +300,41 @@
                 </div>
                 <div class="mission-card">
                     <div class="mission-step">심화 미션 7</div>
+                    <h3>마법 주문 압축하기 (화살표 함수)</h3>
+                    <p>자바스크립트 마법사들은 코드를 짧고 깔끔하게 쓰는 걸 좋아해! 최신 마법인 <b>화살표 함수(Arrow Function)</b>를 써서 코드를 압축해 보자.</p>
+                    <p>
+                        [1] 미션 3 코드에서 <span class="inline-code">function</span> 글자를 지우고, 괄호 뒤에 <span class="inline-code">=&gt;</span> 화살표를 넣어줘!<br>
+                        [2] 괄호 안의 내용이 한 줄뿐일 때는 중괄호 <span class="inline-code">{ }</span> 와 <span class="inline-code">return</span> 글자도 지워서 완벽한 한 줄로 줄일 수 있단다!
+                    </p>
+                    <p>🚨 <b>주의: 아래 코드를 복사해서 붙여넣지 말고, 에디터에 적어둔 기존 코드에서 글자들을 직접 지우고 수정하면서 모양을 바꿔보렴!</b></p>
+                    <span class="tag-hint">힌트: 기존 코드에서 function 지우기, => 넣기, 중괄호와 return 지우기</span><br>
+                    <code class="no-copy">  // 1단계 압축: 기존 코드의 function을 지우고 화살표 넣기!
+  .then((response) =&gt; {
+    return response.json();
+  })
+  
+  // 2단계 압축: 중괄호와 return도 생략! (완벽한 한 줄 마법 ✨)
+  .then(response =&gt; response.json())</code>
+                    <p>💡 <b>추가 미션 1:</b> 미션 4, 5가 들어있는 두 번째 <span class="inline-code">.then(...)</span> 부분도 화살표 함수로 압축해 볼까? (이곳은 명령이 여러 줄이므로 1단계까지만 압축할 수 있어!)</p>
+                    <p>💡 <b>추가 미션 2:</b> 미션 6의 <span class="inline-code">.catch(...)</span> 방어막 부분도 화살표 함수로 압축해 볼까? (이곳은 코드가 한 줄뿐이므로 완벽하게 2단계까지 압축할 수 있어!)</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-step">심화 미션 8</div>
                     <h3>고양이 요원 파견하고 엑스레이(console)로 관찰하기!</h3>
                     <p>이제 고양이 본부(<span class="inline-code">The Cat API</span>)로 통신 요원을 파견할 거야! 강아지 본부와 다르게 고양이 본부의 응답 배낭은 어떻게 생겼는지 콘솔창(F12)을 열어 먼저 확인해보자.</p>
                     <p>
-                        [1] 편집기 아래쪽 <b>'미션 7' 구역</b>에 요원 파견 및 해독 코드를 적어봐!<br>
+                        [1] 편집기 아래쪽 <b>'미션 8' 구역</b>에 요원 파견 및 해독 코드를 적어봐!<br>
                         [2] <span class="inline-code">console.log(data);</span> 를 적고 고양이 버튼을 눌러 콘솔창을 살펴보기
                     </p>
                                         <span class="tag-hint">힌트: fetch, .then, console.log 사용 (고양이 통신 파견)</span><br>
                     <code>  alert("고양이 본부 연결 시도! 🐱");
   
   fetch('https://api.thecatapi.com/v1/images/search')
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
+    .then(response => response.json())
+    .then(data => {
       console.log(data); // 앗! 대괄호[ ]로 싸여있네?
       alert("새 고양이 사진을 찾았습니다! 🐱");
-      // 👇 미션 8: 이 아래에 0번째 상자를 열어서 사진을 꺼내는 마법을 넣을 거야!
+      // 👇 미션 9: 이 아래에 0번째 상자를 열어서 사진을 꺼내는 마법을 넣을 거야!
       
     })</code>
                     <p>✨ <b>팁:</b> 뼈대는 강아지 때랑 똑같아! 주소만 고양이 본부야.</p>
@@ -322,23 +344,21 @@
                         강아지 때처럼 맨 마지막 꼬리에 통신 실패를 막아줄 방어막을 잊지 말고 달아보렴!
                     </p>
                                         <span class="tag-hint">힌트: .catch 사용 (에러 방어막 추가)</span><br>
-                    <code>    .catch(function(error) {
-      alert("고양이 통신 실패! 😭 인터넷을 확인하세요.");
-    });</code>
-                    <p>✨ <b>팁:</b> 미션 7 코드 맨 밑줄에 아래 방어막 코드를 그대로 복사해서 이어 붙이면 돼!</p>
+                    <code>    .catch(error => alert("고양이 통신 실패! 😭 인터넷을 확인하세요."));</code>
+                    <p>✨ <b>팁:</b> 미션 8 코드 맨 밑줄에 아래 방어막 코드를 그대로 복사해서 이어 붙이면 돼!</p>
                 </div>
 
                 <div class="mission-card">
-                    <div class="mission-step">심화 미션 8 (진정한 마스터)</div>
+                    <div class="mission-step">심화 미션 9 (최종 완성)</div>
                     <h3>배열 상자 열어서 고양이 사진 꺼내기!</h3>
                     <p>대괄호 <b>[ ]</b> 상자 안에 든 내용물을 꺼내려면, 컴퓨터에게 몇 번째 상자를 열어야 하는지 알려줘야 해. 컴퓨터는 숫자를 <b>0부터</b> 센다는 사실을 기억해!</p>
                     <p>
-                        [1] 미션 7 코드 안의 <b>'미션 8' 주석 아랫줄</b> 빈 공간에<br>
+                        [1] 미션 8 코드 안의 <b>'미션 9' 주석 아랫줄</b> 빈 공간에<br>
                         [2] 화면 사진(<span class="inline-code">main-img</span>)을 <span class="inline-code">data[0].url</span>로 갈아 끼우는 마법을 추가해!
                     </p>
                                         <span class="tag-hint">힌트: 배열 인덱스[0], src 사용 (0번째 상자 꺼내기)</span><br>
                     <code>    document.getElementById('main-img').src = data[0].url;</code>
-                    <p>✨ <b>팁:</b> 미션 7의 중괄호가 닫히기 전에 그 안에 추가해야 해!</p>
+                    <p>✨ <b>팁:</b> 미션 8의 중괄호가 닫히기 전에 그 안에 추가해야 해!</p>
                 
                     <p>✨ <b>배열(Array) 데이터 파악하기</b></p>
                     <p>
@@ -421,34 +441,41 @@
         </div>
     </div>
     
-    <!-- 이 액자의 사진을 멍냥 사진으로 바꿀 거란다! -->
+    <!-- 이 액자의 사진 소스(src)를 멍냥 사진으로 바꿀 거란다! -->
     <img id="main-img" src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=600&auto=format&fit=crop" alt="귀여운 동물">
 
     <script>
+        //dog-btn을 찾아 dogBtn 보관함에 연결 시켜놨단다!
         const dogBtn = document.getElementById("dog-btn");
-        
-        // 미션 1: 뼈대 준비 완료! (이 안에 강아지 코드를 한 줄씩 이어 붙이렴)
         dogBtn.onclick = function() {
-            
+            // 아래에 강아지 버튼을 눌렀을 때 일어날 마법 주문을 적어주렴!
+            // 미션 1: alert으로 시도 알림 뜨게 하기
+
+
             // 미션 2: 통신 요원 파견 (fetch)
+
             
             // 미션 3: 배낭 해독 (.then)
             
+
             // 미션 4, 5: 콘솔로 확인하고 액자 사진 갈아 끼우기 (.then)
+            
             
             // 미션 6: 방패 들기 (.catch)
             
+            
+            // 미션 7: 마법 주문 압축하기 (화살표 함수) - 기존 코드 수정하기!
         };
         
         // ----------------------------------------------------
-        // 🐱 고양이 버튼을 눌렀을 때의 심화 마법 (미션 7, 8)
+        // 🐱 고양이 버튼을 눌렀을 때의 심화 마법 (미션 8, 9)
         
+        //cat-btn을 찾아 catBtn 보관함에 연결 시켜놨단다!
         const catBtn = document.getElementById("cat-btn");
         catBtn.onclick = function() {
+            // 아래에 고양이 버튼을 눌렀을 때 일어날 마법 주문을 적어주렴!
+            // 미션 8: alert 후 고양이 통신 요원 파견하고 엑스레이로 배열 데이터 관찰하기 (fetch)
             
-            // 미션 7: 고양이 통신 요원 파견하고 엑스레이로 배열 데이터 관찰하기 (fetch)
-            
-            // 👇 미션 8: 이 아래에 0번째 상자를 열어서 사진을 꺼내는 마법을 넣을 거야!
             
         };
     <\/script>

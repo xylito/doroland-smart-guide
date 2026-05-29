@@ -470,7 +470,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         
-        wrapper.appendChild(copyBtn);
+        if (!codeBlock.classList.contains('no-copy')) {
+            wrapper.appendChild(copyBtn);
+        }
     });
 
     // Dictionary Content Loading Logic
