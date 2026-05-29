@@ -395,7 +395,7 @@ title.innerText = agentName + " 요원, 투입 준비 완료!";
                     <div class="mission-step">미션 완료</div>
                     <h3 style="margin-top: 15px;">🎉 JS 요원 기초 훈련 완료! 🎉</h3>
                     <p style="font-size: 1.1rem; margin-bottom: 20px; color: #555;">이제 기초 마법은 완벽하게 통달했습니다!<br>인터넷 너머 외부 세상(API)으로 통신 모험을 떠나볼까요?</p>
-                    <a href="agent-training-api.html" style="display: inline-block; background-color: #f59e0b; color: #fff; text-decoration: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; transition: transform 0.2s; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">🚀 JS 요원 (API) 훈련장으로 이동하기</a>
+                    <a href="agent-training-api.html" onclick="localStorage.setItem('apiUnlocked', 'true');" style="display: inline-block; background-color: #f59e0b; color: #fff; text-decoration: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; transition: transform 0.2s; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">🚀 JS 요원의 API 훈련소 열기</a>
                 </div>
                 </div>
         </div>
@@ -440,7 +440,7 @@ title.innerText = agentName + " 요원, 투입 준비 완료!";
         <a href="agent-training-html.html" class="agent-switch-btn">HTML 요원</a>
         <a href="agent-training-css.html" class="agent-switch-btn">CSS 요원</a>
         <a href="agent-training-js.html" class="agent-switch-btn active">JS 요원</a>
-        <a href="agent-training-api.html" class="agent-switch-btn">JS 요원 (API)</a>
+        <a href="agent-training-api.html" class="agent-switch-btn">JS 요원 - API</a>
     </div>
 
     <script>

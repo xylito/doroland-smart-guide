@@ -357,7 +357,7 @@
                 <li><a href="agent-training/agent-training-html.html" class="link-btn">HTML 요원의 뼈대 훈련</a></li>
                 <li><a href="agent-training/agent-training-css.html" class="link-btn">CSS 요원의 디자인 훈련</a></li>
                 <li><a href="agent-training/agent-training-js.html" class="link-btn">JS 요원의 생명력 훈련</a></li>
-                <li><a href="agent-training/agent-training-api.html" class="link-btn" style="border-left: 3px solid #fbbf24;">JS 요원의 API 훈련</a></li>
+                <li id="portal-api-link" style="display: none;"><a href="agent-training/agent-training-api.html" class="link-btn" style="border-left: 3px solid #fbbf24;">JS 요원의 API 훈련</a></li>
             </ul>
         </div>
 
@@ -402,6 +402,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             const theme = document.documentElement.getAttribute('data-theme') || 'dark';
             updateToggleUI(theme);
+            
+            // API 훈련소 잠금 해제 확인
+            if (localStorage.getItem('apiUnlocked') === 'true') {
+                const apiLink = document.getElementById('portal-api-link');
+                if (apiLink) apiLink.style.display = 'list-item';
+            }
         });
     </script>
 

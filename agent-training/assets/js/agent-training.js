@@ -58,6 +58,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const editorElement = document.getElementById('html-editor');
     const preview = document.getElementById('preview-frame');
 
+
+    // API 훈련소 메뉴 잠금 해제 확인 (모든 요원 페이지 공통)
+    const apiUnlocked = localStorage.getItem('apiUnlocked') === 'true';
+    const currentPath = window.location.pathname;
+    const apiNavLinks = document.querySelectorAll('.agent-switch-nav a[href*="agent-training-api.html"]');
+    
+    apiNavLinks.forEach(link => {
+        // API 페이지 자체가 아니면서 잠금 해제되지 않은 경우에만 숨김
+        if (!apiUnlocked && !currentPath.includes('agent-training-api.html')) {
+            link.style.display = 'none';
+        }
+    });
+
+
+
     if (editorElement) {
         window.cmEditor = CodeMirror.fromTextArea(editorElement, {
             mode: "htmlmixed",
