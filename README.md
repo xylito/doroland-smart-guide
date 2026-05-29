@@ -1,4 +1,4 @@
-# 🎡 도로랜드 스마트 가이드 (Doroland Smart Guide) Version 1.5.0 (2026.05.29.)
+# 🎡 도로랜드 스마트 가이드 (Doroland Smart Guide) Version 1.6.0 (2026.05.29.)
 
 **"도로랜드 정보국 신입 요원 훈련 포털 및 스마트 가이드 실습 저장소입니다."**
 
@@ -26,7 +26,7 @@ HTML, CSS, JS 요원의 안내를 받아 웹의 3요소를 정복합니다.
 *   **HTML 요원:** 문서의 뼈대와 구조 구축 (Semantic HTML)
 *   **CSS 요원:** 세련된 디자인과 레이아웃 설계 (Modern CSS)
 *   **JS 요원:** 생동감 넘치는 동적 로직 구현 (Vanilla JS)
-*   **JS 요원 (API):** 강아지/고양이 오픈 API 통신 및 데이터(객체/배열) 처리 심화 훈련
+*   **JS 요원 (API):** 강아지/고양이 오픈 API 통신(GET) 및 가상 서버(Mock API)를 활용한 방명록 CRUD(POST, DELETE) 심화 훈련
 
 ### 3️⃣ `smart-guide-web/` | 스마트 가이드 프로토타입 (Final Mission)
 훈련을 통해 배운 기술을 집약하여 완성할 '도로랜드 스마트 안내 시스템'의 최종 모델입니다.
@@ -40,6 +40,9 @@ HTML, CSS, JS 요원의 안내를 받아 웹의 3요소를 정복합니다.
 
 *   **🎮 히든 스테이지 해금(Gamification Unlock):**
     *   JS 요원 기초 훈련 미션을 모두 완수해야만 심화 과정인 'API 훈련소' 스테이지가 포털과 메뉴에 잠금 해제(localStorage)되어 나타나도록 설계하여, 학생들의 학습 동기와 성취감을 극대화했습니다.
+*   **🛠 자체 가상 서버(Mock API) 환경:**
+    *   외부 백엔드 서버 구축 없이도 `fetch` 요청을 가로채어 실제 서버처럼 응답하는 내장 Mock API를 구현했습니다.
+    *   브라우저 `localStorage`와 연동하여 단순 데이터 조회(GET)를 넘어 방명록 작성(POST), 삭제(DELETE) 등 실감 나는 통신 실습이 가능합니다.
 *   **지능형 테마 시스템 (Smart Theme):**
     *   사용자 시스템 설정(Windows/Mac/iOS/Android 다크모드)을 자동 감지합니다.
     *   모든 페이지 간의 주/야간 모드 설정이 실시간으로 동기화(localStorage Persistence)됩니다.
