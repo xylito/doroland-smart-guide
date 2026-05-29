@@ -81,5 +81,11 @@ window.CodewhisperDump = {
         <li><code>style.transition</code> <b>디자인 변화 애니메이션(전환)</b></li>
         <li><code>style.cursor</code> <b>마우스 포인터 모양 변경</b></li>
         <li><code>fetch()</code> <b>외부 데이터 요청</b></li>
-    `
-};
+        <li><code>fetch()</code> <b>외부 서버로 통신 요원(요청) 파견하기</b></li>
+        <li><code>.then()</code> <b>요원이 성공적으로 돌아왔을 때 할 일 예약하기</b></li>
+        <li><code>.catch()</code> <b>통신 중 에러(문제)가 발생했을 때 낚아채서 처리하기</b></li>
+        <li><code>response</code> <b>서버가 돌려준 응답 배낭 (상태 코드 등 포함)</b></li>
+        <li><code>response.status</code> <b>서버 응답 상태 번호 (200은 성공!)</b></li>
+        <li><code>response.json()</code> <b>암호화된 응답 배낭을 자바스크립트 객체로 번역(해독)하기</b></li>
+        <li><code>return</code> <b>번역된 결과물을 다음 예약된 작업(.then)으로 토스(전달)하기</b></li>
+    `};
