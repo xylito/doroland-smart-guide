@@ -391,89 +391,13 @@ title.innerText = agentName + " 요원, 투입 준비 완료!";
                 </div>
 
 
-                <div class="mission-card">
-                    <div class="mission-step">미션 11 (보너스)</div>
-                    <h3>접속 성공 주문서 작성하기</h3>
-                    <p>자바스크립트 마법사는 내 컴퓨터 밖의 머나먼 서버와도 대화할 수 있단다! 우선 강아지 나라 본부와 통신이 잘 연결되었을 때 실행할 주문서를 써보자.</p>
-                    <p>
-                        [1] <span class="inline-code">showSuccess</span> 라는 이름의 주문서를 만들고 괄호 안에 <span class="inline-code">response</span> 라고 적어두기<br>
-                        [2] 주문서 안에 <span class="inline-code">alert</span>를 써서 상태 번호(<span class="inline-code">response.status</span>)가 포함된 성공 메시지 띄우기
-                    </p>
-                    <span class="tag-hint">힌트: function과 alert 사용 (배낭에서 상태 번호인 response.status를 꺼내 더해줘요!)</span><br>
-                    <code>function showSuccess(response) {
-  alert("강아지 나라 서버 접속 성공! 📡 (상태 코드: " + response.status + ")");
-}</code>
-                    <p style="margin-top: 15px; margin-bottom: 5px; font-size: 0.95rem;">✨ <b>JS 작동 원리 탐구</b></p>
-                    <div>
-                        <p>· <b>매개변수 비유 (<span class="inline-code">response</span>):</b> 괄호 안의 <span class="inline-code">response</span>는 요원이 서버에서 가져올 <b>'응답 배낭'</b>이란다! 미리 적어두는 건 배낭을 놓을 <b>'선반'</b>을 마련해 두는 셈이지.<br>
-                        · <b>점(.) 찍고 꺼내기:</b> 배낭 뒤에 점(<span class="inline-code">.</span>)을 찍으면 안의 내용물을 꺼낼 수 있어. <span class="inline-code">response.status</span>는 통신 성공 여부를 알려주는 상태 번호(보통 200)란다.<br>
-                        · <b>마법의 풀칠 (+ 연산자):</b> 텍스트와 숫자 사이에 <span class="inline-code">+</span>를 쓰면 수학의 덧셈이 아니라 두 내용을 하나로 딱 붙여준단다!</p>
-                    </div>
+                <div class="mission-card" style="text-align: center; background-color: #fffaf0;">
+                    <div class="mission-step">미션 완료</div>
+                    <h3 style="margin-top: 15px;">🎉 JS 요원 기초 훈련 완료! 🎉</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 20px; color: #555;">이제 기초 마법은 완벽하게 통달했습니다!<br>인터넷 너머 외부 세상(API)으로 통신 모험을 떠나볼까요?</p>
+                    <a href="agent-training-api.html" style="display: inline-block; background-color: #f59e0b; color: #fff; text-decoration: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; transition: transform 0.2s; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">🚀 JS 요원 (API) 훈련장으로 이동하기</a>
                 </div>
-
-                <div class="mission-card">
-                    <div class="mission-step">미션 12</div>
-                    <h3>인터넷 너머로 통신 요원 파견하기</h3>
-                    <p>이제 강아지 나라 서버 주소로 요원(<span class="inline-code">fetch</span>)을 파견하고, 안전하게 돌아오면 방금 만든 주문서를 발동시켜 보자!</p>
-                    <p>
-                        [1] <span class="inline-code">fetch</span> 명령으로 서버 주소에 요원을 파견하고<br>
-                        [2] 요원이 돌아오면(<span class="inline-code">.then</span>) 방금 만든 <span class="inline-code">showSuccess</span> 주문서를 발동하도록 연결하기
-                    </p>
-                    <span class="tag-hint">힌트: fetch와 .then 사용 (괄호 없이 함수 이름만 쓱 연결해요!)</span><br>
-                    <code>fetch('https://dog.ceo/api/breeds/image/random')
-  .then(showSuccess);</code>
-                    <p style="margin-top: 15px; margin-bottom: 5px; font-size: 0.95rem;">💡 <b>자동 배달 원리</b></p>
-                    <p style="margin: 2px 0; font-size: 0.85rem; line-height: 1.4; word-break: break-all;">
-                        <span class="inline-code">.then(showSuccess)</span>라고 괄호 없이 적어두면, 요원이 돌아와서 자기가 들고 온 <b>응답 배낭(<span class="inline-code">response</span>)을 미션 11에서 만들어둔 선반 위에 알아서 챡! 올려놓게</b> 된단다!
-                    </p>
                 </div>
-
-                <div class="mission-card">
-                    <div class="mission-step">미션 13</div>
-                    <h3>돌아온 데이터 가방 해독하기 (번역기 주문서)</h3>
-                    <p>요원이 들고 온 응답 배낭(<span class="inline-code">response</span>)은 꽁꽁 잠겨 있어 바로 읽을 수 없단다. 자바스크립트가 읽을 수 있도록 번역 주문서를 써보자!</p>
-                    <p>
-                        [1] <span class="inline-code">translateData</span> 라는 이름의 번역기 주문서를 만들고<br>
-                        [2] <span class="inline-code">response.json()</span> 명령으로 내용물을 번역한 뒤 반환(<span class="inline-code">return</span>)하기
-                    </p>
-                    <span class="tag-hint">힌트: function과 return, response.json() 사용</span><br>
-                    <code>function translateData(response) {
-  return response.json();
-}</code>
-                    <p style="margin-top: 15px; margin-bottom: 5px; font-size: 0.95rem;">💡 <b>토스(Toss) 마법</b></p>
-                    <p style="margin: 2px 0; font-size: 0.85rem; line-height: 1.4; word-break: break-all;">
-                        번역 완료 후 적는 <span class="inline-code">return</span>은 번역이 끝난 진짜 내용물인 <b>'강아지 선물 상자'를 다음 대기 중인 주문서에게 휙! 던져(Toss)주는 마법 손길</b>이란다.
-                    </p>
-                </div>
-
-                <div class="mission-card">
-                    <div class="mission-step">미션 14 (최종 완성)</div>
-                    <h3>해독한 강아지 사진을 액자에 걸기!</h3>
-                    <p>마지막으로, 번역기가 휙 던져준 진짜 강아지 상자(<span class="inline-code">data</span>)를 받아 화면의 사진 액자를 갈아 끼워주는 주문서를 완성해 보자!</p>
-                    <p>
-                        [1] <span class="inline-code">hangPicture</span> 라는 이름의 주문서를 만들고 상자(<span class="inline-code">data</span>) 받기<br>
-                        [2] 상태가 "success"인지 깐깐한 저울(<span class="inline-code">===</span>)로 확인하고<br>
-                        [3] 맞다면 알림창을 띄우고 메인 사진(<span class="inline-code">main-img</span>)의 주소(<span class="inline-code">src</span>)를 <span class="inline-code">data.message</span>로 갈아 끼우기<br>
-                        [4] 맨 밑에 <span class="inline-code">fetch</span>부터 <span class="inline-code">.then</span>까지 3단 콤보 마법 발동시키기!
-                    </p>
-                    <span class="tag-hint">힌트: function, if, src 속성을 활용해 3단 콤보 마법을 최종 완성해요!</span><br>
-                    <code>function hangPicture(data) {
-  if (data.status === "success") {
-    alert("실시간 강아지 사진 액자 장착! 🐶");
-    document.getElementById('main-img').src = data.message;
-  }
-}
-
-// 최종 3단 콤보 마법 발동! (파견 -> 번역 -> 사진 걸기)
-fetch('https://dog.ceo/api/breeds/image/random')
-  .then(translateData)
-  .then(hangPicture);</code>
-                    <p style="margin-top: 15px; margin-bottom: 5px; font-size: 0.95rem;">✨ <b>JS 작동 원리 탐구</b></p>
-                    <div>
-                        <p>· <b>선물 상자 받기:</b> 괄호 속에 <span class="inline-code">data</span>라고 써두는 것은, 앞 단계 번역기 주문서가 던져준 선물 상자를 안전하게 받기 위해 <b>'두 손'</b>을 앞으로 내밀어 두는 것이란다!<br>
-                        · <b>깐깐한 저울 (<span class="inline-code">===</span>):</b> 양쪽이 똑같은지 확인하는 저울이야. 모양뿐만 아니라 타입(텍스트인지 숫자인지)까지 완벽히 같아야만 참(True)으로 인정해주지.</p>
-                    </div>
-                </div></div>
         </div>
 
         <!-- Training Content (Editor + Preview) -->
@@ -516,6 +440,7 @@ fetch('https://dog.ceo/api/breeds/image/random')
         <a href="agent-training-html.html" class="agent-switch-btn">HTML 요원</a>
         <a href="agent-training-css.html" class="agent-switch-btn">CSS 요원</a>
         <a href="agent-training-js.html" class="agent-switch-btn active">JS 요원</a>
+        <a href="agent-training-api.html" class="agent-switch-btn">JS 요원 (API)</a>
     </div>
 
     <script>
