@@ -184,7 +184,7 @@
                         <strong>허허, 반가워 신입 요원! ⚡</strong><br>
                         나는 정적인 웹페이지에 생명을 불어넣는 마법사, <strong>JS(자바스크립트) 요원 아저씨</strong>란다.<br>
                         HTML과 CSS 요원들이 예쁜 뼈대와 디자인을 만들어 주었구만! 하지만 아직 움직이지 않는 그림일 뿐이지.<br>
-                        이제 내 차례야! 버튼을 누르면 알림이 뜨고, 글자가 변하는 등 <strong>움직이고 반응하는</strong> 진짜 웹페이지를 만들어 볼 거란다.<br>
+                        이제 내 차례야! 버튼을 누르면 알림이 뜨고, 텍스트가 변하는 등 <strong>움직이고 반응하는</strong> 진짜 웹페이지를 만들어 볼 거란다.<br>
                         어렵지 않으니까 아저씨의 마법 주문을 잘 따라 해보렴! 우측 편집기에서 미션 시작!
                     </div>
                 </div>
@@ -203,61 +203,59 @@
                     <p>💡 <b>상수 const:</b> <span class="inline-code">const</span>는 절대 열리지 않는 <b>'안전한 보관함'</b>이란다! 한 번 이름을 붙여서 무언가를 담아두면, 다른 마법사가 와도 내용물을 함부로 바꿀 수 없지.</p>
                     <span class="tag-hint">힌트: document.getElementById 사용</span><br>
                     <code>const title = document.getElementById('main-title');</code>
-                    <p style="margin-top: 15px; margin-bottom: 5px;">💡 <b>추가 미션:</b> 다른 지팡이(추적기) 종류도 구경해 보렴!</p>
-                    <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
-                        <p style="margin: 2px 0; font-size: 0.85rem; word-break: break-all;">· <span class="inline-code">getElementById('ID')</span> : 특정 ID로 찾기</p>
-                        <p style="margin: 2px 0; font-size: 0.85rem; word-break: break-all;">· <span class="inline-code">getElementsByTagName('태그')</span> : 태그 이름으로 모두 찾기</p>
-                        <p style="margin: 2px 0; font-size: 0.85rem; word-break: break-all;">· <span class="inline-code">getElementsByClassName('클래스')</span> : 클래스 이름으로 모두 찾기</p>
-                        <p style="margin: 2px 0; font-size: 0.85rem; word-break: break-all;">· <span class="inline-code">querySelector('CSS선택자')</span> : 만능 추적기 (첫 번째 요소만)</p>
-                        <p style="margin: 2px 0; font-size: 0.85rem; word-break: break-all;">· <span class="inline-code">querySelectorAll('CSS선택자')</span> : 만능 복수 추적기 (모두 찾기)</p>
-                        <p style="margin: 2px 0; padding-left: 12px; font-size: 0.8rem; word-break: break-all;">
-                            - 선택자 예시: <span class="inline-code">#main-title</span> (ID), <span class="inline-code">.content-box</span> (클래스), <span class="inline-code">h1</span> (태그)
+                    <p>💡 <b>추가 미션:</b> 다른 지팡이(추적기) 종류도 구경해 보렴!</p>
+                    <div>
+                        <p>· <span class="inline-code">getElementById('ID')</span> : 특정 ID로 찾기<br>
+                           · <span class="inline-code">getElementsByTagName('태그')</span> : 태그 이름으로 모두 찾기<br>
+                           · <span class="inline-code">getElementsByClassName('클래스')</span> : 클래스 이름으로 모두 찾기<br>
+                           · <span class="inline-code">querySelector('CSS선택자')</span> : 만능 추적기 (첫 번째 요소만)<br>
+                           · <span class="inline-code">querySelectorAll('CSS선택자')</span> : 만능 복수 추적기 (모두 찾기)<br>
+                           - 선택자 예시: <span class="inline-code">#main-title</span> (ID), <span class="inline-code">.content-box</span> (클래스), <span class="inline-code">h1</span> (태그)
                         </p>
                     </div>
                 </div>
 
                 <div class="mission-card">
                     <div class="mission-step">미션 2</div>
-                    <h3>글자 바꾸기 마법</h3>
-                    <p>찾아낸 제목의 글자를 "자바스크립트 마법 성공!"으로 확 바꿔볼까?</p>
-                    <span class="tag-hint">힌트: innerText 사용</span><br>
+                    <h3>텍스트 내용 마법</h3>
+                    <p>찾아낸 제목의 텍스트를 "자바스크립트 마법 성공!"으로 확 바꿔볼까?</p>
+                    <span class="tag-hint">힌트: innerText 사용 (텍스트 변경)</span><br>
                     <code>title.innerText = "자바스크립트 마법 성공!";</code>
-                    <p style="margin-top: 15px; margin-bottom: 5px;">💡 <b>추가 미션:</b> 다른 방식으로 글자나 태그를 제어해 보렴!</p>
-                    <span class="tag-hint">힌트: innerHTML 사용</span><br>
+                    <p>💡 <b>추가 미션:</b> 다른 방식으로 텍스트나 태그를 제어해 보렴!</p>
+                    <span class="tag-hint">힌트: innerHTML 사용 (텍스트 변경(태그))</span><br>
                     <code>title.innerHTML = "&lt;i&gt;자바스크립트 마법 성공!&lt;/i&gt;";</code>
                 </div>
 
                 <div class="mission-card">
                     <div class="mission-step">미션 3</div>
-                    <h3>기본 모양 및 색상 마법</h3>
+                    <h3>텍스트 스타일 마법</h3>
                     <p>제목이 눈에 확 띄도록 주황색(orange)으로 색을 입혀주렴!</p>
-                    <span class="tag-hint">힌트: style.color 사용</span><br>
+                    <span class="tag-hint">힌트: style.color 사용 (텍스트 색상 변경)</span><br>
                     <code>title.style.color = "orange";</code>
-                    <p style="margin-top: 15px; margin-bottom: 5px;">💡 <b>추가 미션:</b> 다른 모양과 색상을 제어하는 주문들도 한 줄씩 외쳐보렴!</p>
-                    <span class="tag-hint">힌트 1: style.backgroundColor 사용 (배경색 칠하기)</span><br>
-                    <code>title.style.backgroundColor = "pink";</code>
-                    <span class="tag-hint">힌트 2: style.border 사용 (테두리 두르기)</span><br>
-                    <code>title.style.border = "2px solid orange";</code>
-                    <span class="tag-hint">힌트 3: style.borderRadius 사용 (모서리 둥글게 깎기)</span><br>
-                    <code>title.style.borderRadius = "15px";</code>
-                    <span class="tag-hint">힌트 4: style.padding 사용 (안쪽 여백 늘리기)</span><br>
-                    <code>title.style.padding = "20px";</code>
+                    <p>💡 <b>추가 미션:</b> 다른 텍스트 꾸미기 주문들도 한 줄씩 외쳐보렴!</p>
+                    <span class="tag-hint">힌트 1: style.fontSize 사용 (텍스트 크기 변경)</span><br>
+                    <code>title.style.fontSize = "25px";</code>
+                    <span class="tag-hint">힌트 2: style.textAlign 사용 (텍스트 정렬 변경)</span><br>
+                    <code>title.style.textAlign = "left";</code>
+                    <span class="tag-hint">힌트 3: style.textShadow 사용 (텍스트 그림자 변경)</span><br>
+                    <code>title.style.textShadow = "2px 2px 4px rgba(0,0,0,0.2)";</code>
                 </div>
 
                 <div class="mission-card">
                     <div class="mission-step">미션 4</div>
-                    <h3>글자 크기 및 정렬 마법</h3>
-                    <p>제목의 크기를 25픽셀(25px)로 바꾸어보자꾸나!</p>
-                    <span class="tag-hint">힌트: style.fontSize 사용</span><br>
-                    <code>title.style.fontSize = "25px";</code>
-                    <p style="margin-top: 15px; margin-bottom: 5px;">💡 <b>추가 미션:</b> 텍스트 레이아웃을 조절하는 주문들도 한 줄씩 실행해 보렴!</p>
-                    <span class="tag-hint">힌트 1: style.textAlign 사용 (글자 가운데 정렬)</span><br>
-                    <code>title.style.textAlign = "left";</code>
-                    <span class="tag-hint">힌트 2: style.textShadow 사용 (예쁜 그림자 넣기)</span><br>
-                    <code>title.style.textShadow = "2px 2px 4px rgba(0,0,0,0.2)";</code>
-                    <span class="tag-hint">힌트 3: style.boxShadow 사용 (예쁜 그림자 넣기)</span><br>
+                    <h3>배경 스타일 마법</h3>
+                    <p>이번엔 제목 배경 영역을 예쁜 핑크색(pink)으로 칠해보자꾸나!</p>
+                    <span class="tag-hint">힌트: style.backgroundColor 사용 (배경 색상 변경)</span><br>
+                    <code>title.style.backgroundColor = "pink";</code>
+                    <p>💡 <b>추가 미션:</b> 상자의 모양과 여백을 조절하는 주문들도 실행해 보렴!</p>
+                    <span class="tag-hint">힌트 1: style.padding 사용 (배경 내부 여백 변경)</span><br>
+                    <code>title.style.padding = "20px";</code>
+                    <span class="tag-hint">힌트 2: style.border 사용 (배경 테두리 변경)</span><br>
+                    <code>title.style.border = "2px solid orange";</code>
+                    <span class="tag-hint">힌트 3: style.borderRadius 사용 (배경 모서리 둥글게 변경)</span><br>
+                    <code>title.style.borderRadius = "15px";</code>
+                    <span class="tag-hint">힌트 4: style.boxShadow 사용 (배경 그림자 변경)</span><br>
                     <code>title.style.boxShadow = "2px 2px 4px rgba(0,0,0,0.2)";</code>
-                    
                 </div>
 
                 <div class="mission-card">
@@ -266,40 +264,36 @@
                     <p>허허, 한 단계씩 따라 하는 건 너무 쉬웠지? 이제 실력을 증명할 때다!<br>
                         문장 전체가 아니라 <span class="inline-code">&lt;span&gt;</span> 요소인 한 단어만 작업해볼거다!</p>
                     <p>[1] 아이디가 <span class="inline-code">park-status</span>인 요소를 찾아<br>
-                        [2] 글자를 '정상 운영'으로 바꾸고<br>
-                        [3] 파란색(blue) 색상을 입힌 후<br>
-                        [4] 글자 크기를 20픽셀(20px)로 시원하게 키워라!</p>
+                        [2] 텍스트를 '정상 운영'으로 바꾸고<br>
+                        [3] 텍스트 색상을 하얀색(white)으로 입힌 후<br>
+                        [4] 배경을 파란색(blue)으로 칠해라!</p>
                     <p>4단 콤보 종합 시험 마법을 완성해 보렴!</p>
-                    <span class="tag-hint">힌트: 미션 1, 2, 3, 4 단계의 기술을 멋지게 하나로 엮어봐요!</span><br>
+                    <span class="tag-hint">힌트: 미션 1, 2, 3, 4 단계의 기술을 하나로 엮어봐요!</span><br>
                     <code>const statusSpan = document.getElementById('park-status');
 statusSpan.innerText = "정상 운영";
-statusSpan.style.color = "blue";
-statusSpan.style.fontSize = "20px";</code>
+statusSpan.style.color = "white";
+statusSpan.style.backgroundColor = "blue";</code>
                 </div>
 
                 <div class="mission-card">
                     <div class="mission-step">미션 6</div>
-                    <h3>마우스 커서 모양 바꾸기</h3>
+                    <h3>커서 스타일 마법</h3>
                     <p>마치 진짜 링크 단추인 것처럼 제목 위에 마우스가 올라갔을 때 손가락 모양(<span class="inline-code">pointer</span>)으로 포인터를 바꿔보렴!</p>
                     <span class="tag-hint">힌트: style.cursor 사용</span><br>
                     <code>title.style.cursor = "pointer";</code>
-                    <p style="margin-top: 15px; margin-bottom: 5px;">💡 <b>추가 미션:</b> 다른 마우스 커서 모양들도 구경해 보렴!</p>
-                    <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
-                        <p style="margin: 2px 0; font-size: 0.85rem; word-break: break-all;">· <span class="inline-code">title.style.cursor = "help";</span> : 도움말 모양 (물음표)</p>
-                        <p style="margin: 2px 0; font-size: 0.85rem; word-break: break-all;">· <span class="inline-code">title.style.cursor = "wait";</span> : 로딩 중 (모래시계/빙글빙글)</p>
-                        <p style="margin: 2px 0; font-size: 0.85rem; word-break: break-all;">· <span class="inline-code">title.style.cursor = "crosshair";</span> : 십자선 (조준점)</p>
-                        <p style="margin: 2px 0; font-size: 0.85rem; word-break: break-all;">· <span class="inline-code">title.style.cursor = "not-allowed";</span> : 금지 모양</p>
-                    </div>
+                    <p>💡 <b>추가 미션:</b> <span class="inline-code">"help"</span>(물음표), <span class="inline-code">"wait"</span>(로딩중), <span class="inline-code">"crosshair"</span>(십자선), <span class="inline-code">"not-allowed"</span>(금지) 등 다양한 값을 넣어보렴!</p>
                 </div>
 
                 <div class="mission-card">
                     <div class="mission-step">미션 7</div>
-                    <h3>마우스오버 생동감 종합 마법 (글자 + 크기 + 회전)</h3>
-                    <p>먼저 스타일 변화가 부드럽게 일어나도록 트랜지션(<span class="inline-code">style.transition = "all 0.5s ease";</span>)을 걸어주자!<br>그 다음, 마우스가 올라갔을 때(<span class="inline-code">onmouseover</span>) 글자 내용을 "어라? 나를 만졌네! 😮"로 바꿈과 동시에 1.1배 크기 및 시계방향 5도 회전(<span class="inline-code">style.transform = "scale(1.1) rotate(5deg)";</span>)을 시키고, 마우스가 떠났을 때(<span class="inline-code">onmouseout</span>) 글자 내용을 "👋 JavaScript 요원 다녀감 😆"로 바꾸며 원래 상태로 되돌리는 초특급 생동감 마법을 완성해 보렴!</p>
-                    <span class="tag-hint">힌트: style.transition 설정 후, onmouseover와 onmouseout, style.transform 사용</span><br>
-                    <code>title.style.transition = "all 0.5s ease";
-
-title.onmouseover = function() {
+                    <h3>마우스오버 생동감 종합 마법 (텍스트 + 크기 + 회전)</h3>
+                    <p>이제 마우스 움직임에 맞춰 살아 움직이는 생동감 마법을 걸어보자!</p>
+                    <p>
+                        [1] 마우스가 닿을 때(<span class="inline-code">onmouseover</span>) 텍스트와 크기, 회전을 바꾸고<br>
+                        [2] 마우스가 떠날 때(<span class="inline-code">onmouseout</span>) 텍스트를 바꾸며 원래 상태로 (<span class="inline-code">""</span>) 되돌려 보렴!
+                    </p>
+                    <span class="tag-hint">힌트: onmouseover, onmouseout 작성</span><br>
+                    <code>title.onmouseover = function() {
   title.innerText = "어라? 나를 만졌네! 😮";
   title.style.transform = "scale(1.1) rotate(5deg)";
 };
@@ -307,13 +301,15 @@ title.onmouseout = function() {
   title.innerText = "👋 JavaScript 요원 다녀감 😆";
   title.style.transform = "";
 };</code>
-                    <p style="margin-top: 15px; margin-bottom: 5px;">💡 <b>JS 요원 아저씨의 마법 돋보기 (작동 원리):</b></p>
-                    <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
-                        <p style="margin: 2px 0; font-size: 0.85rem; line-height: 1.4; word-break: break-all;">
-                            · <b>부드러운 전환 (<span class="inline-code">transition</span>):</b> 미리 <span class="inline-code">transition</span> 효과를 걸어두었기 때문에, 마우스를 갖다 대거나 뗄 때 `transform` 마법이 뚝뚝 끊기지 않고 영화처럼 스르륵 부드럽게 연출된단다!
-                        </p>
-                        <p style="margin: 2px 0; font-size: 0.85rem; line-height: 1.4; word-break: break-all;">
-                            · <b>원상 복구 (<span class="inline-code">""</span> 빈 문자열):</b> <span class="inline-code">scale(1.1)</span>은 1.1배 크기 확대, <span class="inline-code">rotate(5deg)</span>는 5도 회전이란다. 마우스 아웃 상태일 때는 제자리로 되돌리기 위해 <b>빈 문자열(<span class="inline-code">""</span>)</b>을 대입하면, 추가했던 인라인 마법이 싹 지워지면서 원래 CSS 디자인 상태로 깔끔하게 돌아간단다!
+                    <p style="margin-top: 15px; margin-bottom: 5px; font-size: 0.95rem;">💡 <b>부드러운 움직임 더하기</b></p>
+                    <p style="margin: 2px 0 8px 0; font-size: 0.9rem;">앗, 움직임이 너무 뚝뚝 끊기나요? 아래 줄에 트랜지션(<span class="inline-code">transition</span>)을 한 줄 추가해서 스르륵 부드럽게 만들어 주자!</p>
+                    <span class="tag-hint">힌트: style.transition 추가</span><br>
+                    <code>title.style.transition = "all 0.5s ease";</code>
+                    <p>✨ <b>JS 작동 원리 탐구</b></p>
+                    <div>
+                        <p>· <b>기능 모음집 (<span class="inline-code">function() { }</span>):</b> 여러 기능을 함께 실행할 때 쓰는 '기능 모음집'! 이벤트에 모음집을 달아주면, 이벤트 발생 시 기능들이 순서대로 실행되지!<br>
+                        · <b>부드러운 전환 (<span class="inline-code">transition</span>):</b> 미리 전환 효과를 걸어두어, 이벤트가 일어날 때 영화처럼 스르륵 부드럽게 연출된단다!<br>
+                        · <b>원상 복구 (<span class="inline-code">""</span> 빈 문자열):</b> 마우스가 떠났을 때 원래대로 되돌리기 위해 <b>빈 문자열(<span class="inline-code">""</span>)</b>을 대입하면, 추가했던 마법이 깔끔하게 지워진단다!
                         </p>
                     </div>
                 </div>
@@ -322,77 +318,144 @@ title.onmouseout = function() {
                 <div class="mission-card">
                     <div class="mission-step">미션 8</div>
                     <h3>사진 크기 조절하기 (마우스 이벤트 복습)</h3>
-                    <p>이번에는 사진(아이디: <span class="inline-code">main-img</span>)을 찾아서, 마우스가 올라갔을 때(<span class="inline-code">onmouseover</span>) 1.2배로 커지고(<span class="inline-code">scale(1.2)</span>), 마우스가 떠났을 때(<span class="inline-code">onmouseout</span>) 원래 크기로 돌아오는 마법을 복습해 보자꾸나!</p>
+                    <p>이번에는 방금 배운 마우스 이벤트를 사진에 적용해서 복습해 보자꾸나!</p>
+                    <p>
+                        [1] 사진(아이디: <span class="inline-code">main-img</span>)을 찾아 변수에 저장하고<br>
+                        [2] 마우스가 닿을 때(<span class="inline-code">onmouseover</span>) 0.9배로 작아지게 만들고<br>
+                        [3] 마우스가 떠날 때(<span class="inline-code">onmouseout</span>) 원래 크기로 되돌려 보렴!
+                    </p>
                     <span class="tag-hint">힌트: document.getElementById, onmouseover, onmouseout 사용</span><br>
                     <code>const img = document.getElementById('main-img');
 img.onmouseover = function() {
-  img.style.transform = "scale(1.2)";
+  img.style.transform = "scale(0.9)";
 };
 img.onmouseout = function() {
   img.style.transform = "";
 };</code>
+                    <p>✨ <b>JS 요원 아저씨와 CSS 요원의 꿀팁</b></p>
+                    <p>이번엔 자바스크립트로 <span class="inline-code">transition</span>을 쓰지 않았는데도 부드럽게 움직였지? <b>CSS 요원이 미리 사진(<span class="inline-code">#main-img</span>)에 전환 효과를 걸어두었기 때문</b>이란다!<br>실무에서도 이렇게 뼈대(전환 효과)는 CSS에 맡기고, JS로는 크기나 위치만 바꾸는 방식을 자주 쓴단다.</p>
                 </div>
 
-<div class="mission-card">
+                <div class="mission-card">
                     <div class="mission-step">미션 9</div>
-                    <h3>알림 마법 주문서(함수) 작성하기</h3>
-                    <p>화면에 환영 알림창을 띄우는 <span class="inline-code">showMagic</span> 이라는 주문서를 미리 써보자꾸나!<br>⚠️ <b>중요:</b> 마법 주문서(함수)를 적어두는 것만으로는 마법이 바로 나가진 않는단다. 그래서 지금은 코드를 완성해도 <u>결과 화면에 아무 일도 일어나지 않는 게 정상이란다!</u> 다음 미션 10에서 이 주문서를 발동할 거란다.</p>
-                    <span class="tag-hint">힌트: function과 alert 사용</span><br>
+                    <h3>버튼에 알림 기능 모음집 연결하기</h3>
+                    <p>이번에는 환영 알림을 띄우는 나만의 모음집(<span class="inline-code">function</span>)을 만들고, 버튼과 연결해서 직접 발동시켜 보자!</p>
+                    <p>
+                        [1] <span class="inline-code">showMagic</span> 이라는 이름의 모음집을 만들고 알림창(<span class="inline-code">alert</span>) 마법 넣기<br>
+                        [2] 마법 버튼(아이디: <span class="inline-code">magic-btn</span>)을 찾아 변수에 저장하기<br>
+                        [3] 버튼을 클릭할 때(<span class="inline-code">onclick</span>) <span class="inline-code">showMagic</span> 모음집이 실행되도록 연결하기
+                    </p>
+                    <span class="tag-hint">힌트: function, alert, document.getElementById, onclick 사용</span><br>
                     <code>function showMagic() {
   alert("환영합니다!");
-}</code>
+}
+const btn = document.getElementById('magic-btn');
+btn.onclick = showMagic;</code>
+                    <p>💡 <b>추가 미션: 다른 팝업창 띄워보기</b></p>
+                    <p>
+                        · <span class="inline-code">prompt("요원의 이름을 입력하세요");</span> : 텍스트를 입력받는 창<br>
+                        · <span class="inline-code">confirm("정말 마법을 발동하시겠습니까?");</span> : 확인/취소를 고르는 창
+                    </p>
+                    <p>✨ <b>JS 작동 원리 탐구: 이름 있는 마법 vs 1회용 마법</b></p>
+                    <div>
+                        <p>· <b>이름 있는 마법 (<span class="inline-code">function showMagic()</span>)</b>: 마법에 이름을 쾅! 붙여두면 여러 버튼에서 똑같은 마법을 계속 돌려 쓸 수 있어요.<br>
+                        · <b>1회용 마법 (<span class="inline-code">btn.onclick = function()</span>)</b>: 미션 7, 8처럼 한 곳에서 딱 한 번만 쓸 마법이라면, 굳이 이름을 짓지 않고 이렇게 바로 연결하는 방식을 가장 많이 쓴단다!</p>
+                        <p style="margin-top: 10px;">⚠️ <b>특급 주의:</b> 연결할 때 <span class="inline-code">.onclick = showMagic();</span>처럼 ()를 붙이면 <b>바로 실행</b>돼요!<br>버튼을 <u>누를 때만</u> 실행되게 하려면 괄호 없이 이름만 연결해야 해!</p>
+                    </div>
                 </div>
 
                 <div class="mission-card">
                     <div class="mission-step">미션 10</div>
-                    <h3>버튼을 누를 때 마법 주문 발동시키기</h3>
-                    <p>마법 버튼(아이디: <span class="inline-code">magic-btn</span>)을 찾아내서, 클릭할 때 방금 만든 <span class="inline-code">showMagic</span> 주문서가 샥 발동되도록 연결해 보자!<br>⚠️ <b>특급 주의:</b> 주문 이름 뒤에 괄호<span class="inline-code">()</span>를 붙이면 그 자리에서 즉시 주문이 깨져버려요! 버튼을 <u>'누를 때'만</u> 발동하게 하려면 괄호 없이 주문 이름인 <span class="inline-code">showMagic</span>만 깔끔하게 연결해야 한단다.</p>
-                    <span class="tag-hint">힌트: document.getElementById 와 onclick 사용</span><br>
-                    <code>const btn = document.getElementById('magic-btn');
-btn.onclick = showMagic;</code>
+                    <h3>비밀 통신망에 기록 남기기 (콘솔)</h3>
+                    <p>방금 배운 팝업창(<span class="inline-code">prompt</span>)을 활용해 투입할 요원의 이름을 입력받고, 비밀 통신망인 콘솔(<span class="inline-code">console.log</span>)과 화면의 제목을 동시에 바꿔보자!</p>
+                    <p>
+                        [1] <span class="inline-code">prompt</span> 로 투입할 요원의 이름을 물어보고 변수에 저장하고<br>
+                        [2] <span class="inline-code">console.log</span> 를 이용해 콘솔에 투입 준비 완료 메시지를 남기고<br>
+                        [3] 미션 2에서 배웠던 <span class="inline-code">title.innerText</span>를 활용해 화면의 제목 내용도 함께 바꿔 보렴!
+                    </p>
+                    <p>💡 <b>비밀 통신망 확인법</b></p>
+                    <p>키보드에서 <b>F12</b>(또는 Mac은 Cmd+Option+I)를 눌러 '개발자 도구'를 연 뒤, <b>Console(콘솔)</b> 탭을 확인해 보렴!</p>
+                    <span class="tag-hint">힌트: const, prompt, console.log 사용 (+ 기호로 텍스트 붙이기)</span><br>
+                    <code>const agentName = prompt("투입할 요원의 이름을 알려주세요:");
+console.log(agentName + " 요원, 투입 준비 완료!");
+title.innerText = agentName + " 요원, 투입 준비 완료!";
+</code>
+                    <p>💡 <b>추가 미션: 마법 버튼에 연결하기</b></p>
+                    <p>
+                        코드를 작성하자마자 바로 창이 뜨는 게 조금 아쉽지? 미션 9에서 배운 것처럼 이 코드를 새로운 모음집(<span class="inline-code">function</span>)으로 묶어서 마법 버튼(<span class="inline-code">btn</span>)을 <u>누를 때만 작동</u>하게 만들어 보렴!
+                    </p>
+                    <code>btn.onclick = function() {
+// 아래 줄에 버튼을 누르면 실행할 코드를 넣기
+
+};</code>
                 </div>
+
 
                 <div class="mission-card">
                     <div class="mission-step">미션 11 (보너스)</div>
                     <h3>접속 성공 주문서 작성하기</h3>
-                    <p>자바스크립트 마법사는 내 컴퓨터 밖의 머나먼 서버와도 대화할 수 있단다!<br>
-                    우선 강아지 나라 본부와 통신이 잘 연결되었을 때 실행할 <span class="inline-code">showSuccess</span> 주문서를 써보자.<br>
-                    💡 <b>매개변수 비유:</b> 괄호 안의 <span class="inline-code">response</span>는 요원이 등 뒤에 메고 올 <b>'응답 배낭(상자)'</b>이란다. 주문을 적을 때 괄호에 <span class="inline-code">response</span>라고 써두는 건, 나중에 요원이 가져올 배낭을 내려놓을 <b>'배낭 선반'</b>을 미리 마련해 두는 것이란다!<br>
-                    🔑 <b>점('.') 찍고 꺼내기 실제 활용:</b> 배낭 뒤에 **점(<span class="inline-code">.</span>)**을 찍어서 통신이 잘 성공했는지 알려주는 서버 상태 번호인 <span class="inline-code">response.status</span>를 쏙 꺼내서 화면에 띄워보자! 연결이 성공하면 마법의 숫자인 <b>200</b>을 돌려받게 된단다!<br>
-                    🧪 <b>문법 탐험 (+ 연산자):</b> 글자와 글자(또는 숫자) 사이에 <span class="inline-code">+</span>를 쓰면 수학의 덧셈이 아니라, 두 글자를 딱 붙여주는 <b>'마법의 풀칠'</b> 역할을 한단다!</p>
+                    <p>자바스크립트 마법사는 내 컴퓨터 밖의 머나먼 서버와도 대화할 수 있단다! 우선 강아지 나라 본부와 통신이 잘 연결되었을 때 실행할 주문서를 써보자.</p>
+                    <p>
+                        [1] <span class="inline-code">showSuccess</span> 라는 이름의 주문서를 만들고 괄호 안에 <span class="inline-code">response</span> 라고 적어두기<br>
+                        [2] 주문서 안에 <span class="inline-code">alert</span>를 써서 상태 번호(<span class="inline-code">response.status</span>)가 포함된 성공 메시지 띄우기
+                    </p>
                     <span class="tag-hint">힌트: function과 alert 사용 (배낭에서 상태 번호인 response.status를 꺼내 더해줘요!)</span><br>
                     <code>function showSuccess(response) {
   alert("강아지 나라 서버 접속 성공! 📡 (상태 코드: " + response.status + ")");
 }</code>
+                    <p style="margin-top: 15px; margin-bottom: 5px; font-size: 0.95rem;">✨ <b>JS 작동 원리 탐구</b></p>
+                    <div>
+                        <p>· <b>매개변수 비유 (<span class="inline-code">response</span>):</b> 괄호 안의 <span class="inline-code">response</span>는 요원이 서버에서 가져올 <b>'응답 배낭'</b>이란다! 미리 적어두는 건 배낭을 놓을 <b>'선반'</b>을 마련해 두는 셈이지.<br>
+                        · <b>점(.) 찍고 꺼내기:</b> 배낭 뒤에 점(<span class="inline-code">.</span>)을 찍으면 안의 내용물을 꺼낼 수 있어. <span class="inline-code">response.status</span>는 통신 성공 여부를 알려주는 상태 번호(보통 200)란다.<br>
+                        · <b>마법의 풀칠 (+ 연산자):</b> 텍스트와 숫자 사이에 <span class="inline-code">+</span>를 쓰면 수학의 덧셈이 아니라 두 내용을 하나로 딱 붙여준단다!</p>
+                    </div>
                 </div>
 
                 <div class="mission-card">
                     <div class="mission-step">미션 12</div>
                     <h3>인터넷 너머로 통신 요원 파견하기</h3>
-                    <p>이제 강아지 나라 서버 주소로 요원(<span class="inline-code">fetch</span>)을 파견하고, 요원이 안전하게 돌아오면(<span class="inline-code">.then</span>) 방금 만든 <span class="inline-code">showSuccess</span> 주문서를 발동하도록 이름만 쓱 전해주자!<br>
-                    💡 <b>자동 배달 원리:</b> <span class="inline-code">.then(showSuccess)</span>라고 괄호 없이 적어두면, 요원이 돌아와서 자기가 들고 온 <b>응답 배낭(<span class="inline-code">response</span>)을 우리가 미션 13에서 만들어둔 배낭 선반 괄호 위에 알아서 챡! 올려놓게</b> 된단다!</p>
+                    <p>이제 강아지 나라 서버 주소로 요원(<span class="inline-code">fetch</span>)을 파견하고, 안전하게 돌아오면 방금 만든 주문서를 발동시켜 보자!</p>
+                    <p>
+                        [1] <span class="inline-code">fetch</span> 명령으로 서버 주소에 요원을 파견하고<br>
+                        [2] 요원이 돌아오면(<span class="inline-code">.then</span>) 방금 만든 <span class="inline-code">showSuccess</span> 주문서를 발동하도록 연결하기
+                    </p>
                     <span class="tag-hint">힌트: fetch와 .then 사용 (괄호 없이 함수 이름만 쓱 연결해요!)</span><br>
                     <code>fetch('https://dog.ceo/api/breeds/image/random')
   .then(showSuccess);</code>
+                    <p style="margin-top: 15px; margin-bottom: 5px; font-size: 0.95rem;">💡 <b>자동 배달 원리</b></p>
+                    <p style="margin: 2px 0; font-size: 0.85rem; line-height: 1.4; word-break: break-all;">
+                        <span class="inline-code">.then(showSuccess)</span>라고 괄호 없이 적어두면, 요원이 돌아와서 자기가 들고 온 <b>응답 배낭(<span class="inline-code">response</span>)을 미션 11에서 만들어둔 선반 위에 알아서 챡! 올려놓게</b> 된단다!
+                    </p>
                 </div>
 
                 <div class="mission-card">
                     <div class="mission-step">미션 13</div>
                     <h3>돌아온 데이터 가방 해독하기 (번역기 주문서)</h3>
-                    <p>요원이 들고 온 응답 배낭(<span class="inline-code">response</span>)은 꽁꽁 잠겨 있어 바로 읽을 수 없단다. 배낭 속 내용물을 자바스크립트가 읽을 수 있도록 번역해 주는 <span class="inline-code">translateData</span> 주문서를 새로 작성해 보자!<br>
-                    💡 <b>토스(Toss) 비유:</b> 번역 완료 후 적는 <span class="inline-code">return response.json();</span>의 <span class="inline-code">return</span>은 번역이 끝난 진짜 내용물인 <b>'강아지 선물 상자'를 다음 대기 중인 주문서에게 휙! 던져(Toss)주는 마법 손길</b>이란다.</p>
+                    <p>요원이 들고 온 응답 배낭(<span class="inline-code">response</span>)은 꽁꽁 잠겨 있어 바로 읽을 수 없단다. 자바스크립트가 읽을 수 있도록 번역 주문서를 써보자!</p>
+                    <p>
+                        [1] <span class="inline-code">translateData</span> 라는 이름의 번역기 주문서를 만들고<br>
+                        [2] <span class="inline-code">response.json()</span> 명령으로 내용물을 번역한 뒤 반환(<span class="inline-code">return</span>)하기
+                    </p>
                     <span class="tag-hint">힌트: function과 return, response.json() 사용</span><br>
                     <code>function translateData(response) {
   return response.json();
 }</code>
+                    <p style="margin-top: 15px; margin-bottom: 5px; font-size: 0.95rem;">💡 <b>토스(Toss) 마법</b></p>
+                    <p style="margin: 2px 0; font-size: 0.85rem; line-height: 1.4; word-break: break-all;">
+                        번역 완료 후 적는 <span class="inline-code">return</span>은 번역이 끝난 진짜 내용물인 <b>'강아지 선물 상자'를 다음 대기 중인 주문서에게 휙! 던져(Toss)주는 마법 손길</b>이란다.
+                    </p>
                 </div>
 
                 <div class="mission-card">
                     <div class="mission-step">미션 14 (최종 완성)</div>
                     <h3>해독한 강아지 사진을 액자에 걸기!</h3>
-                    <p>마지막 단계로, 앞서 번역기가 휙 던져준 진짜 강아지 선물 상자(<span class="inline-code">data</span>)를 받아 화면의 사진 액자(아이디: <span class="inline-code">main-img</span>)의 사진 주소(<span class="inline-code">src</span>)로 갈아 끼워주는 주문서(<span class="inline-code">hangPicture</span>)를 완성해 보렴!<br>
-                    💡 <b>선물 상자 받기:</b> 주문서 괄호 속에 <span class="inline-code">data</span>라고 써두는 것은, 앞 단계 번역기 주문서가 던져준 선물 상자(<span class="inline-code">data</span>)를 안전하게 받기 위해 <b>'두 손'</b>을 앞으로 쭉 내밀어 두는 것이란다!<br>
-                    ⚖️ <b>문법 탐험 (===):</b> <span class="inline-code">===</span> 기호는 양쪽이 똑같은지 확인하는 <b>'깐깐한 저울'</b>이란다! 모양뿐만 아니라 타입(글자인지 숫자인지)까지 똑같아야만 참(True)이라고 인정해주지.</p>
+                    <p>마지막으로, 번역기가 휙 던져준 진짜 강아지 상자(<span class="inline-code">data</span>)를 받아 화면의 사진 액자를 갈아 끼워주는 주문서를 완성해 보자!</p>
+                    <p>
+                        [1] <span class="inline-code">hangPicture</span> 라는 이름의 주문서를 만들고 상자(<span class="inline-code">data</span>) 받기<br>
+                        [2] 상태가 "success"인지 깐깐한 저울(<span class="inline-code">===</span>)로 확인하고<br>
+                        [3] 맞다면 알림창을 띄우고 메인 사진(<span class="inline-code">main-img</span>)의 주소(<span class="inline-code">src</span>)를 <span class="inline-code">data.message</span>로 갈아 끼우기<br>
+                        [4] 맨 밑에 <span class="inline-code">fetch</span>부터 <span class="inline-code">.then</span>까지 3단 콤보 마법 발동시키기!
+                    </p>
                     <span class="tag-hint">힌트: function, if, src 속성을 활용해 3단 콤보 마법을 최종 완성해요!</span><br>
                     <code>function hangPicture(data) {
   if (data.status === "success") {
@@ -405,6 +468,11 @@ btn.onclick = showMagic;</code>
 fetch('https://dog.ceo/api/breeds/image/random')
   .then(translateData)
   .then(hangPicture);</code>
+                    <p style="margin-top: 15px; margin-bottom: 5px; font-size: 0.95rem;">✨ <b>JS 작동 원리 탐구</b></p>
+                    <div>
+                        <p>· <b>선물 상자 받기:</b> 괄호 속에 <span class="inline-code">data</span>라고 써두는 것은, 앞 단계 번역기 주문서가 던져준 선물 상자를 안전하게 받기 위해 <b>'두 손'</b>을 앞으로 내밀어 두는 것이란다!<br>
+                        · <b>깐깐한 저울 (<span class="inline-code">===</span>):</b> 양쪽이 똑같은지 확인하는 저울이야. 모양뿐만 아니라 타입(텍스트인지 숫자인지)까지 완벽히 같아야만 참(True)으로 인정해주지.</p>
+                    </div>
                 </div></div>
         </div>
 
@@ -482,46 +550,55 @@ fetch('https://dog.ceo/api/breeds/image/random')
     <script>
         // JS 요원 아저씨의 마법이 시작되는 곳이란다! 허허!
         
-        // 미션 1: 아이디로 제목 요소 찾기
+        // 미션 1: 마법 지팡이로 제목 찾기
         
         
-        // 미션 2: 제목 글자 바꾸기
+        // 미션 2: 텍스트 내용 마법
+        
+
+
+        // 미션 3: 텍스트 스타일 마법
         
         
-        // 미션 3: 제목 글자색 바꾸기
+
+
+
+        // 미션 4: 배경 스타일 마법
         
         
-        // 미션 4: 제목 글자 크기 바꾸기
+
+
+
+        // 미션 5: 종합 시험 4단 콤보 (미션 1~4 조합)
         
         
-        // 미션 5: 'park-status' id를 찾아 글자를 '정상 운영'으로 바꾸고 파란색(blue) 색상 및 20px 크기로 바꾸자! (종합 시험 4단 콤보)
+        // 미션 6: 커서 스타일 마법 (pointer)
         
         
-        // 미션 6: 제목에 마우스가 올라갔을 때 손가락 모양 포인터로 바꾸기 (cursor)
+        // 미션 7: 마우스오버 생동감 종합 마법 (transform, transition)
         
         
-        // 미션 7: 제목에 부드러운 전환 효과(transition)를 넣고, 마우스가 올라갔을 때와 떠났을 때 글자 및 모양 바꾸기
+
+        // 미션 8: 사진 크기 조절하기 (마우스 이벤트 복습)
         
         
-        // 미션 8: 사진(main-img)에 마우스가 올라가면 커지고 떠나면 줄어들게 만들기 (복습)
+        // 미션 9: 버튼에 알림 기능 모음집 연결하기
         
         
-        // 미션 9: 알림을 띄우는 마법 주문(함수) 만들기
+        // 미션 10: 비밀 통신망에 기록 남기기 (콘솔)
         
         
-        // 미션 10: 버튼을 클릭하면 마법 주문 발동시키기
+        
+        // 미션 11: 접속 성공 주문서 작성하기 (보너스)
         
         
-        // 미션 11: 접속 성공 주문서(showSuccess) 만들기 (보너스)
+        // 미션 12: 인터넷 너머로 통신 요원 파견하기
         
         
-        // 미션 12: 인터넷 너머로 요원 파견하고 주문서 연결하기 (fetch와 then)
+        // 미션 13: 돌아온 데이터 가방 해독하기 (번역기 주문서)
         
         
-        // 미션 13: 돌아온 데이터 가방 해독하는 번역기 주문서(translateData) 만들기
-        
-        
-        // 미션 14: 해독한 강아지 사진을 액자에 거는 주문서(hangPicture) 만들고 최종 3단 콤보 마법 발동시키기!
+        // 미션 14: 해독한 강아지 사진을 액자에 걸기! (최종 완성)
         
         
     <\/script>
