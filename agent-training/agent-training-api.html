@@ -201,7 +201,7 @@
                     <h3>마법 버튼에 시동 걸기</h3>
                     <p>인터넷 너머로 통신을 보낼 때는 언제 보낼지 타이밍이 중요해. 우리는 <b>버튼을 누를 때마다</b> 사진을 가져올 거야!</p>
                     <p>
-                        [1] <span class="inline-code">dogBtn.onclick = function() { }</span> 뼈대를 만들고<br>
+                        [1] <span class="inline-code">dogBtn.onclick = function() { }</span> 뼈대는 만들어져 있다!<br>
                         [2] 괄호 안에 <span class="inline-code">alert("강아지 본부 연결 시도!");</span>를 넣어 버튼이 살아있는지 콕 찔러보렴!
                     </p>
                                         <span class="tag-hint">힌트: alert 사용 (알림창 띄우기)</span><br>
@@ -214,10 +214,9 @@
                     <h3>인터넷으로 통신 요원 파견하기 (fetch)</h3>
                     <p>이제 진짜 인터넷 세상인 강아지 나라 본부로 통신 요원(<span class="inline-code">fetch</span>)을 파견해 보자!</p>
                     <p>
-                        [1] 미션 1에서 썼던 <span class="inline-code">alert</span> 코드는 지우고<br>
-                        [2] 그 자리에 <span class="inline-code">fetch(...)</span> 명령을 적어 요원을 파견해 보렴!
+                        [1] <span class="inline-code">fetch(...)</span> 명령을 적어 요원을 파견해 보렴!
                     </p>
-                                        <span class="tag-hint">힌트: fetch 사용 (외부 서버 통신)</span><br>
+                    <span class="tag-hint">힌트: fetch 사용 (외부 서버 통신)</span><br>
                     <code>fetch('https://dog.ceo/api/breeds/image/random')</code>
                     <p>✨ <b>팁:</b> 괄호 안에 주소를 정확히 넣어야 요원이 길을 잃지 않아!</p>
                     <p>💡 <b>어? 아무 일도 안 일어나는데요?</b></p>
@@ -413,8 +412,8 @@
 
                 <div class="mission-card">
                     <div class="mission-step">미션 12 [보너스]</div>
-                    <h3>내가 쓴 흔적 지우기 (DELETE)</h3>
-                    <p>방명록이 마음에 들지 않아? 그럼 요원에게 화면의 방명록 리스트를 <b>지워 달라고(DELETE)</b> 요청해 보자!</p>
+                    <h3>전체 방명록 지우기 (DELETE)</h3>
+                    <p>방명록을 삭제하고 싶다면, 요원에게 화면의 방명록 리스트를 <b>지워 달라고(DELETE)</b> 요청해 보자!</p>
                     <p>
                         [1] 편집기 맨 아래쪽 <b>'미션 12' 구역</b>을 찾아보렴!<br>
                         [2] <span class="inline-code">{ method: 'DELETE' }</span> 라는 특별 임무를 주고 화면도 초기화하자!
