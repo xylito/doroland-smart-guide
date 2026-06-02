@@ -121,8 +121,9 @@ document.getElementById("fetch-data-btn").addEventListener("click", () => {
     btn.style.opacity = 0.7;
 
     // [과제 안내]
-    // GPT를 활용해서 아래 부분을 실제 공공데이터 fetch 코드로 바꿔보세요!
-    // (폴더 내의 swagger-kma-weather.html와 swagger-airkorea-pollution.html 문서를 참고하면 어떤 api가 있는지 확인할 수 있습니다.)
+    // 이 폴더 안에 숨어있는 'AI 조력자(튜터)'와 우리가 훈련소에서 배웠던 통신 마법(fetch)을 활용해서, 
+    // 아래 가짜 데이터(setTimeout) 부분을 '진짜 공공데이터 통신 코드'로 바꿔보세요!
+    // (포털 메인 화면의 '1단계: 공공데이터 해킹(API) 연습장'을 클릭하여 주소를 확인해 보세요!)
     
     // 임시 시뮬레이션 (1초 후 데이터 완성된 척 하기)
     setTimeout(() => {
