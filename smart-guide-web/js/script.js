@@ -121,7 +121,7 @@ document.getElementById("fetch-data-btn").addEventListener("click", () => {
     btn.style.opacity = 0.7;
 
     // [과제 안내]
-    // 이 폴더 안에 숨어있는 'AI 조력자(튜터)'와 우리가 훈련소에서 배웠던 통신 마법(fetch)을 활용해서, 
+    // 이 폴더 안에 숨어있는 'AI 요원(튜터)'과 우리가 훈련소에서 배웠던 통신 마법(fetch)을 활용해서, 
     // 아래 가짜 데이터(setTimeout) 부분을 '진짜 공공데이터 통신 코드'로 바꿔보세요!
     // (포털 메인 화면의 '1단계: 공공데이터 해킹(API) 연습장'을 클릭하여 주소를 확인해 보세요!)
     
