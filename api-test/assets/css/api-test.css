@@ -5,7 +5,7 @@
   - Project:    도로랜드 정보국 훈련소
   - Creator:    XYLO
   - Powered by: DORO Inc.
-  - Version:    1.6.0 (2026.05.29.)
+  - Version:    1.7.0 (2026.06.04.)
   - Source:     https://github.com/xylito/doroland-smart-guide
   - License:    CC BY-SA 4.0 (상업적 이용 가능 / 동일 조건 변경 허락 / 저작자 표시)
   
