@@ -25,8 +25,9 @@ def zip_skeleton():
                     # 압축 파일 내부에 루트(바로) 파일들이 오도록 저장 (이중 폴더 방지)
                     arcname = os.path.relpath(file_path, source_dir)
                     zipf.write(file_path, arcname)
+                    print(f"  [+] 압축됨: {arcname}")
                     
-        print(f"✅ 압축 완료: {output_filename}")
+        print(f"\n✅ 압축 완료: {output_filename}")
         print(f"📂 대상 폴더: {source_dir}")
         
     except Exception as e:
