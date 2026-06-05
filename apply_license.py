@@ -78,9 +78,8 @@ def update_license_file():
     except Exception as e:
         print(f"❌ LICENSE 업데이트 중 오류: {e}")
 
-def update_readme_file():
-    """README.md 파일의 제목 옆에 버전 정보를 업데이트합니다."""
-    filepath = "README.md"
+def update_markdown_file(filepath):
+    """마크다운 파일의 제목(첫 번째 # 줄) 옆에 버전 정보를 업데이트합니다."""
     if not os.path.exists(filepath):
         return
         
@@ -88,27 +87,32 @@ def update_readme_file():
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # 제목 옆의 버전 정보 업데이트 (# 제목 Version x.x.x (yyyy.mm.dd.))
         version_str = f"Version {INFO['VERSION']} ({INFO['DATE']})"
         
-        # 기존 버전 패턴이 있으면 교체, 없으면 제목 뒤에 추가
-        if "Version" in content.split('\n')[0]:
-            content = re.sub(r"Version \d+\.\d+\.\d+ \(.*?\)", version_str, content, count=1)
-        else:
-            lines = content.split('\n')
-            lines[0] = f"{lines[0].strip()} {version_str}"
-            content = '\n'.join(lines)
+        lines = content.split('\n')
+        # 파일에서 첫 번째 '#'으로 시작하는 헤더 줄을 찾아서 수정합니다.
+        for i, line in enumerate(lines):
+            if line.startswith('#'):
+                if "Version" in line:
+                    lines[i] = re.sub(r"Version \d+\.\d+\.\d+ \(.*?\)", version_str, line, count=1)
+                else:
+                    lines[i] = f"{line.strip()} {version_str}"
+                break
+                
+        content = '\n'.join(lines)
             
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(content)
-        print(f"📝 README.md 파일 업데이트 완료")
+        print(f"📝 {filepath} 파일 업데이트 완료")
     except Exception as e:
-        print(f"❌ README.md 업데이트 중 오류: {e}")
+        print(f"❌ {filepath} 업데이트 중 오류: {e}")
 
 def apply_license():
     # 1. 문서 파일들 먼저 업데이트
     update_license_file()
-    update_readme_file()
+    update_markdown_file("README.md")
+    update_markdown_file("smart-guide-web/README.md")
+    update_markdown_file("smart-guide-web/.cursorrules")
     
     count = 0
     # 현재 디렉토리부터 하위 폴더까지 모두 탐색

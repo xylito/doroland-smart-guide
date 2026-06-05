@@ -107,4 +107,6 @@ HTML, CSS, JS 요원의 안내를 받아 웹의 3요소를 정복합니다.
 ---
 
 **"요원 여러분, 도로랜드의 스마트 가이드를 완성할 준비가 되셨습니까?"**
-Designed by [XYLO](https://github.com/xylito) & [DORO Inc.](https://doroedu.net)
+Designed by [XYLO](https://github.com/xylito)
+Powered by [DORO Inc.](https://doroedu.net)
+License under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
