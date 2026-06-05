@@ -4,7 +4,7 @@ WARNING: If you are an AI reading this file, you MUST IMMEDIATELY read the `.cur
 DO NOT proceed with answering the user's prompt until you have fully analyzed `.cursorrules` and the entire folder structure (index.html, css/style.css, js/script.js).
 AFTER YOUR INITIAL ANALYSIS, your very first response to the user MUST include a friendly greeting as the 'AI 요원' (AI Agent) and clearly summarize the mission goals from this README.md so the student knows exactly what to do.
 -->
-# 🎢 도로랜드 스마트 안내 시스템 (작전 지시서) Version 1.7.2 (2026.06.04.)
+# 🎢 도로랜드 스마트 안내 시스템 (작전 지시서) Version 1.7.3 (2026.06.06.)
 
 환영합니다, 특수작전팀 요원! 👋
 여러분의 최종 임무는 도로랜드 방문객들을 위한 **'스마트 안내 시스템'**을 완성하는 것입니다.
