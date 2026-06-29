@@ -16,8 +16,8 @@ def zip_skeleton():
         # 기존 파일이 있다면 덮어씁니다.
         with zipfile.ZipFile(output_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
             for root, dirs, files in os.walk(source_dir):
-                # 숨김 파일 제외 (단, .cursorrules는 포함, .DS_Store는 제외)
-                files = [f for f in files if (not f.startswith('.') or f == '.cursorrules') and f != '.DS_Store']
+                # 숨김 파일 제외 (단, AGENT.md는 포함, .DS_Store는 제외)
+                files = [f for f in files if (not f.startswith('.') or f == 'AGENT.md') and f != '.DS_Store']
                 
                 for file in files:
                     # 파일의 전체 경로

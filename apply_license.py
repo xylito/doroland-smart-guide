@@ -112,7 +112,7 @@ def apply_license():
     update_license_file()
     update_markdown_file("README.md")
     update_markdown_file("smart-guide-web/README.md")
-    update_markdown_file("smart-guide-web/.cursorrules")
+    update_markdown_file("smart-guide-web/AGENT.md")
     
     count = 0
     # 현재 디렉토리부터 하위 폴더까지 모두 탐색
