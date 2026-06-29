@@ -1,4 +1,4 @@
-# 🎡 도로랜드 스마트 가이드 (Doroland Smart Guide) Version 1.7.3 (2026.06.06.)
+# 🎡 도로랜드 스마트 가이드 (Doroland Smart Guide) Version 1.7.4 (2026.06.29.)
 
 **"도로랜드 정보국 신입 요원 훈련 포털 및 스마트 가이드 실습 저장소입니다."**
 
